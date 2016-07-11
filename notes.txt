@@ -1,0 +1,106 @@
+Why?
+
+  Why databases?
+    organized way to store and manage data
+    usually to disk (but in memory also exists)
+
+    ...alternatives?
+      roll your own, store shit to files (shitty)
+
+  Why relational databases?
+    relational model good-enough for a lot of data
+    very popular
+
+    ...alternatives?
+      object stores
+      key-value stores
+      document stores
+      graph stores
+      ...why choose?
+         cost / open-source
+         db model match your data
+         performance match your data
+         scaling strategy
+         ACID, CAP
+
+  Why SQL?
+    defacto standard for relational databases
+
+    ...alternatives?
+      not really
+
+  Why...
+    Sqlite?
+      most popular embedded SQL
+      mature, well tested
+      not for production (no multi-client; one write at a time)
+
+    MySQL? Postgres?
+      mysql was most popular open-source sql db
+      development stagnated after being acquired by Oracle
+      ...postgres is the new favorite
+
+    ...alternatives?
+      many other non-free alternatives
+
+Week Overview
+  SQL -> knex (js library to create SQL queries) -> ORMs (treating tables as objects)
+
+
+
+Schema
+  Creating Tables
+    Types:
+      Integer, Decimal, Text, Date, DateTime
+    Constraints:
+      Unique, Not Null, Primary Key
+    Foreign Keys
+      relate data between tables
+    Indexes
+      indexing a column makes querying by it faster
+    Primary Keys
+      unique identifier for a record, usually used in relationships
+
+    CREATE TABLE
+
+  Updating
+    ALTER TABLE
+
+basics (CRUD):
+  SELECT
+  INSERT
+  UPDATE
+  DELETE
+
+advanced queries:
+  joins
+    SELECT ... JOIN ...
+
+    can have left/right inner/outer
+      http://www.codinghorror.com/blog/2007/10/a-visual-explanation-of-sql-joins.html
+
+  groups
+    GROUP BY
+
+  aggregates
+    SUM
+    AVG
+    COUNT
+    MIN
+    MAX
+
+    HAVING
+
+    https://www.sqlite.org/lang_aggfunc.html
+
+    ** if you are using an aggregate, you probably need a GROUP BY **
+
+
+Schema Design
+  Normalization
+  Entity Relationship Diagrams
+  Relationships
+    1-1  (one to one)
+    1-*  (one to many)
+    *-*  (many to many)
+
