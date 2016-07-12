@@ -29,11 +29,9 @@ CREATE TABLE tags (
 );
 
 CREATE TABLE artists_tags (
-  artist_id INTEGER NOT NULL REFERENCES albums(id) ON DELETE CASCADE,
-  tag_id INTEGER NOT NULL REFERENCES artists(id) ON DELETE CASCADE
+  artist_id INTEGER NOT NULL REFERENCES artists(id) ON DELETE CASCADE,
+  tag_id INTEGER NOT NULL REFERENCES tags(id) ON DELETE CASCADE
 );
-
-
 
 INSERT INTO "tags" (id, name) VALUES(1, "post-rock");
 INSERT INTO "tags" (id, name) VALUES(2, "instrumental");
