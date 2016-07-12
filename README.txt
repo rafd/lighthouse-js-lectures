@@ -10,7 +10,8 @@ LIST TABLES:
 CHECK SCHEMA:
   .schema "table"
 
-TURN HEADERS ON:
+TURN ON COLUMNS AND HEADERS:
+  .mode column
   .headers on
 
 
