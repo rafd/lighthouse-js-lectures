@@ -88,9 +88,14 @@ advanced queries:
     COUNT
     MIN
     MAX
+    for strings:
+      GROUP_CONCAT (sqlite)
+      STRING_AGG(col, ',') (postgres)
+
 
     HAVING
 
+    https://www.postgresql.org/docs/9.1/static/functions-aggregate.html
     https://www.sqlite.org/lang_aggfunc.html
 
     ** if you are using an aggregate, you probably need a GROUP BY **
