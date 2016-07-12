@@ -1,8 +1,8 @@
--- DROP TABLE artists;
--- DROP TABLE albums;
--- DROP TABLE tracks;
--- DROP TABLE tags;
--- DROP TABLE artists_tags;
+DROP TABLE IF EXISTS artists;
+DROP TABLE IF EXISTS albums;
+DROP TABLE IF EXISTS tracks;
+DROP TABLE IF EXISTS tags;
+DROP TABLE IF EXISTS artists_tags;
 
 CREATE TABLE artists (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
