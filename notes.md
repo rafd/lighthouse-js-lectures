@@ -4,8 +4,9 @@ OWASP Top 10
 
 https://www.owasp.org/index.php/Top_10_2013-Top_10
 
-authentication - verifying identity
-authorization - verifying permission
+authentication: verifying identity
+
+authorization: verifying permission
 
 
 ##1 - Injection
