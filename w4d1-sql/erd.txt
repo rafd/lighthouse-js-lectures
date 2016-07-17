@@ -1,0 +1,36 @@
+tags
+ - id
+ - name
+
+*
+|      artists_tags
+|        - artist_id
+|        - tag_id
+*
+
+artists
+ - id
+ - name
+
+|
+|
+*
+
+albums
+ - id
+ - title
+ - year
+ - artist_id
+
+|
+|
+*
+
+tracks
+ - id
+ - title
+ - number
+ - album_id
+
+
+
