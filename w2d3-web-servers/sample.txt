@@ -1,0 +1,47 @@
+GET /b/ss/[rsid]/0?g=apps.sillystring.com%2Fsummary.do&r=http%3A%2F%2Fapps.sillystring.com%
+2Fsummary.do&ip=192.168.10.1&gn=summary&v2=14911&c10=Brazil&vid=1286556420966514130&ts=2009-03-05T01%3A00%3A01-05 HTTP/1.1
+Host: [rsid].112.2o7.net
+Keep-Alive: timeout=15
+Connection: Keep-Alive
+X-Forwarded-For: 192.168.10.1
+
+
+
+{:url "....."
+ :headers {:host "...."
+           :keep-alive {:timeout 15}
+           }
+}
+
+
+function server (request) {
+
+   return response;
+}
+
+
+
+
+{status: "200"
+ headers: {date: "..."}
+}
+
+
+
+
+
+
+
+HTTP/1.0 200 OK
+Date: Wed, 13 May 2009 16:26:47 GMT
+X-C: ms-3.7.2
+Expires: Tue, 12 May 2009 16:26:47 GMT
+Last-Modified: Thu, 14 May 2009 16:26:47 GMT
+Cache-Control: no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, no-transform, private
+Pragma: no-cache
+ETag: "49F5FD79-3E44-38021808"
+Vary: *
+P3P: policyref="/w3c/p3p.xml", CP="NOI DSP COR NID PSA OUR IND COM NAV STA"
+xserver: www83
+Connection: close
+Content-Type: text/html
