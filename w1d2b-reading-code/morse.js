@@ -1,42 +1,43 @@
-var table = {
+var morseLookup = {
   "s": "...",
-  "o": "---",
+  "o": "---"
+};
+
+var englishLookup = {
   "...": "s",
   "---": "o"
+}
+
+function englishCharToMorseChar(char) {
+  return morseLookup[char.toLowerCase()];
 };
 
-function charToMorse (char) { // char = "S"
-  return table[char.toLowerCase()];
+function morseCharToEnglishChar(morse) {
+  return englishLookup[morse.toLowerCase()];
 };
 
-function morseCharToChar (morse) {
-  return table[morse.toLowerCase()];
-};
+function englishToMorse(string) {
+  var out = "";
+  var chars = string.split("");
 
-function textToMorse (string) {
-  var out = ""; // "...---..."
-  var chars = string.split(""); // === ["S", "O", "S"]
-
-  for(var i = 0; i < string.length; i++) { // i = 0, 1, 2
-    out += charToMorse(chars[i]);
+  for(var i = 0; i < string.length; i++) {
+    out += englishCharToMorseChar(chars[i]);
   }
 
   return out;
 };
 
-function morseToText (string) {
+function morseToEnglish(string) {
   var out = "";
   var chars = string.split("");
 
-  // forEach serves the same purpose as the for-loop in textToMorse
-  // but is generally preferred when you're just looping over each item once
   string.split(" ").forEach(function(c) {
-    out += morseCharToChar(c);
+    out += morseCharToEnglishChar(c);
   });
 
   return out;
 };
-  
-console.log(textToMorse("SOS"));
 
-console.log(morseToText("... --- ..."));
+console.log(englishToMorse("SOS"));
+
+console.log(morseToEnglish("... --- ..."));

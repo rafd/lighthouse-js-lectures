@@ -1,28 +1,31 @@
-var table = {
+var morseLookup = {
   "s": "...",
-  "o": "---",
+  "o": "---"
+};
+
+var englishLookup = {
   "...": "s",
   "---": "o"
+}
+
+function englishCharToMorseChar(char) {
+  return morseLookup[char.toLowerCase()];
 };
 
-var charToMorse = function (char) {
-  return table[char.toLowerCase()];
+function morseCharToEnglishChar(morse) {
+  return englishLookup[morse.toLowerCase()];
 };
 
-var morseCharToChar = function (morse) {
-  return table[morse.toLowerCase()];
-};
-
-var mapChars = function (string, splitChar, fn, joinChar) {
+function mapChars(string, splitChar, fn, joinChar) {
   return string.split(splitChar).map(fn).join(joinChar);
 };
 
-var textToMorse = function (string) {
-  return mapChars(string, "", charToMorse, " ");
+function textToMorse(string) {
+  return mapChars(string, "", englishCharToMorseChar, " ");
 };
 
-var morseToText = function (morseString) {
-  return mapChars(morseString, " ", morseCharToChar, "");
+function morseToText (morseString) {
+  return mapChars(morseString, " ", morseCharToEnglishChar, "");
 };
 
 console.log(textToMorse("SOS"));
