@@ -31,8 +31,18 @@ var foo = fooFactory();
 foo(); // "hello 1"
 foo(); // "hello 2"
 
-// but, we have created a closure
-// foo remembers the value of fooCallCount, even after fooFactory has finished being invoked
+// we can also create another one:
+
+foo2 = fooFactory();
+foo2(); // "hello 1"
+foo(); // "hello 3"  (continuing from before)
+
+// whenever you have a function that references a value defined outside of it
+// the function "remembers" (keeps a reference) to that variable
+// this function is called "a closure" ("we have created a closure")
+// we also say: "this function closes-over the value of variable x"
+
+// in our example, foo remembers the value of fooCallCount, even after fooFactory has finished being invoked
 
 // fooFactory is a function:
 
@@ -105,4 +115,9 @@ var foo = (function () {
     return fooCallCount;
   }
 })();
+
 foo();
+
+// you have probably created closures without thinking about it; now, you can do it on purpose
+// closures are often used to limit the scope of variables (ie. protect them from being changed by other parts of the program)
+// when working with multiple files, we frequently take advantage of closures (more about that tomorrow)
