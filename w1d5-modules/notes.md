@@ -1,4 +1,4 @@
-= Modules
+# Modules
 
 ```
 // lib/my-module.js
@@ -18,7 +18,7 @@ myModule.foo;
 myModule.bar()
 ```
 
-= NPM
+# NPM
 
 Modules that are published to NPM are called "packages" (or "libraries").
 
@@ -71,7 +71,7 @@ npm run mocha
 (This runs the version of `mocha` that is installed locally for the current project)
 
 
-= Mocha
+# Mocha
 
 http://mochajs.org/
 
@@ -107,7 +107,7 @@ npm test
 Typically, in a node project, you would have modules in `./lib/` and tests in `./test/`
 
 
-= Bank Example
+# Bank Example
 
 To run the tests, do:
 
