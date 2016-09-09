@@ -1,0 +1,17 @@
+{
+  "name": "w1d5lecture",
+  "version": "0.0.1",
+  "description": "Lecture about modules and npm",
+  "main": "bar.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC"
+}
