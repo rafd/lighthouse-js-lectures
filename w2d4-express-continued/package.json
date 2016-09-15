@@ -1,0 +1,21 @@
+{
+  "name": "express-continued",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "local": "./node_modules/.bin/nodemon --ignore public/"
+  },
+  "author": "Lighthouse Labs",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
+  }
+}
