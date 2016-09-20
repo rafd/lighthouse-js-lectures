@@ -76,18 +76,18 @@ Builds on the previous one and shows a more realistic application.
 
 ### UNSAFE:
   ```javascript
-  $(`${user-content}`);
+  $(`${userContent}`);
 
-  $("...").html(user-content);
+  $("...").html(userContent);
   ```
 
 
 ### SAFE:
 
   ```javascript
-  $("...").text(user-content);
+  $("...").text(userContent);
 
-  $(`${escape(user-content)}`);
+  $(`${escape(userContent)}`);
 
   function escape(str) {
     var div = document.createElement('div');
