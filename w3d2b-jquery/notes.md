@@ -24,23 +24,20 @@
     - see: http://stackoverflow.com/questions/148747/what-is-the-difference-between-a-framework-and-a-library#148759
 
 ### What is `$` or `jQuery` in code exactly? How does it work?
-  - $ === jQuery
+
+  - `$` === `jQuery`
   - can do a lot of things with it:
     - search for DOM elements:
-       $("a")
+       `$("a")`
     - create DOM elements:
-       $("<a>")
+       `$("<a>")`
     - delay a function until document is ready:
-       $(function() { ... });
+       `$(function() { ... });`
     - turn a DOM element into a jQuery object
-       $(document)
+       `$(document)`
     - turn an array/hash into a jQuery object (rare)
-        $([1,2,3])
+        `$([1,2,3])`
 
-
-### jQuery vs jQueryUI
-
-  lib vs UI stuff
 
 ### Why is it important to learn / use jQuery ?
 
@@ -65,12 +62,7 @@ Create a new element using `$` dynamically and then append it to the DOM.
 - End: <https://jsfiddle.net/encw11fk/11/>
 
 
-
-
-
-
-
-## Demo 3: Realistic Demo [10m]
+## Demo 2: Realistic Demo [15m]
 
 Builds on the previous one and shows a more realistic application.
  - JSON data-structure
@@ -80,26 +72,29 @@ Builds on the previous one and shows a more realistic application.
 - End: <https://jsfiddle.net/x41fbsaq/4/>
 
 
-SECURITY ALERT!
+### SECURITY ALERT!
 
-UNSAFE:
-
+### UNSAFE:
+  ```javascript
   $(`${user-content}`);
 
   $("...").html(user-content);
+  ```
 
 
-SAFE:
+### SAFE:
 
-  $("...").text(user-content)
+  ```javascript
+  $("...").text(user-content);
 
-  $(`${escape(user-content)}`)
+  $(`${escape(user-content)}`);
 
   function escape(str) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   }
+  ```
 
 ## jQuery Alternatives & Why Size Matters™ [2-5m]
 
