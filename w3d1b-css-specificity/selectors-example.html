@@ -1,0 +1,23 @@
+<html>
+<head>
+  <style>
+    /* using the x as a way to disable the rule;
+      delete the x to turn on the rule */
+
+    x a { color: red; }
+    x div a { color: blue; }
+    x div>a { color: green; }
+    x span~a { color: pink; }
+    x span+a { color: yellow; }
+  </style>
+  <body>
+    <div>
+      <a>A</a>
+      <span>
+         <a>B</a>
+      </span>
+      <a>C</a>
+      <a>D</a>
+    </div>
+  </body>
+</html>
