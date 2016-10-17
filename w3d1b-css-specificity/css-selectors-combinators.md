@@ -61,16 +61,16 @@ div > a {...}
 
 
 
-div ~ a {...}
+span ~ a {...}
 
-<body>
+<div>
   <a></a> ; not styled
-  <div>
+  <span>
     <a></a> ; not styled
-  </div>
+  </span>
   <a></a> ; styled
   <a></a> ; styled
-</body>
+</div>
 
 
 span + a {...}
