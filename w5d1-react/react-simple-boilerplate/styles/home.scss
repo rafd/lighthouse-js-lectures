@@ -1,0 +1,17 @@
+$size: 50px;
+
+.board {
+  width: 3 * 50px;
+
+  .square {
+    width: $size;
+    height: $size;
+    border: 1px solid black;
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    text-align: center;
+    line-height: $size;
+  }
+
+}

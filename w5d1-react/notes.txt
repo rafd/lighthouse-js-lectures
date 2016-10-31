@@ -1,0 +1,207 @@
+Chatty Project
+==============
+
+  - SPA
+  - React
+  - Websockets
+
+  DEMO
+
+
+Front-end JS History
+====================
+
+  - generally, trend of moving UI + user-state from server -> client
+  - faster computers, smarter browser compilers
+  - higher user experience expectations (apps vs web pages)
+
+
+
+  (1) html only "apps"
+      ----------------
+
+    - server generated UI
+    - like your URL Shortener App
+
+
+
+  * computers get faster; browser js compilers get smarter --> js is actually decent in browser *
+  * AJAX is introduced *
+
+
+
+  (2) html + progressive enhancement w/ js
+      ------------------------------------
+
+    - server-generated UI + js generated UI
+    - like your Tweeter app
+    - initial UI rendered by server + new UI via JS
+
+    - benefits:
+      - faster UI action/reaction loop (opened up for things like google maps vs. mapquest)
+      - maintain interface context
+      - better UX (start seeing "apps" vs. web pages)
+
+    - issues:
+      - UI code on front-end & back-end (node helped, w/ reusable templates)
+      - jQuery-way of doing things (imperative, keep state in HTML) would often end up w/ spaghetti code, harder to reason about UI
+      - many DOM manipulations are expensive (ie. slow)
+
+
+
+  * faster computers; faster compiler trend continues *
+
+
+
+  3) "SPAs" single page applications
+     -------------------------------
+
+    - generate the entire UI w/ JS
+
+    - benefits:
+      - much simpler to code complex "apps"
+      - nice seperation of concerns: client (UI) vs server (API/DB/security)
+
+    - issues:
+      - large initial download (ie. slow)
+        - (now, mostly a non-issue: possible to split up code; possible to pre-render server-side)
+      - search engine indexing
+        - (mostly a non-issue: google now runs JS;
+      - need to watch out for performance on mobile devices
+
+
+SPA: Single Page Applications
+=============================
+
+  - index.html that links to some JS and CSS
+  - entire UI built with JS
+  - fetch data, push changes via AJAX to an API
+  - client and server can be on different domains (although, need CORS)
+  - user can still experience different "pages", but, technically, there is one HTML page
+    - URLs can still change thanks to History PushState
+
+
+React
+=====
+
+  declarative templates (called "components")
+  every time some data changes, re-calculate everything
+  (under the hood: shadow DOM, fancy diff algo)
+
+  result:
+    - good performance
+    - much easier to reason about
+
+  many different ways to manage state w/ React
+    (React itself doesn't care):
+    - state stored locally in each relevant component
+    - one single global state ("flux" / "redux")
+    - ... (many others)
+
+
+Thinking in React
+=================
+
+  (1) Break-up Target Interface into Components:
+
+  Ex. Slack
+
+    APP -----------------------------------------
+    |  SIDEBAR ---------------------------
+    |  |  TEAM-ICON
+    |  |  TEAM-ICON
+    |  |  ...
+    |
+    |  ACTIVE-TEAM -----------------------
+    |  |  SIDEBAR --------------------
+    |  |  |  HEADER
+    |  |  |
+    |  |  |  CHANNEL-LIST ---------
+    |  |  |  |  CHANNEL
+    |  |  |  |  CHANNEL
+    |  |  |  |  ...
+    |  |  |
+    |  |  |  DIRECT-MESSAGE-LIST --
+    |  |  |  | DM
+    |  |  |  | DM
+    |  |  |  | ...
+    |  |
+    |  |  CHATROOM -------------------
+    |  |  |  MESSAGES-LIST -------
+    |  |  |  |  MESSAGE
+    |  |  |  |  MESSAGE
+    |  |  |  |  ...
+    |  |  |
+    |  |  |  MESSAGE-COMPOSER
+
+
+  (2) Make a list of all state required by the app to render interface
+        (2 kinds of state: app data, ui state)
+
+    Ex. Slack
+
+    APP DATA: (stuff that would be persisted to database)
+
+      { groups: [ { rooms: [{ name: "Watercooler",
+                              messages: [ { from: "Bob",
+                                            content: "Hi!" },
+                                          ...]
+                            },
+                            ... ],
+                    users: { ... }
+                  },
+                 ...
+                ]
+      }
+
+    UI STATE: (stuff only the client cares about)
+
+    { activeGroup: "Lighthouse",
+      activeRoom: "Watercooler",
+      ... }
+
+
+
+
+* break *
+
+
+
+React Boilerplate
+=================
+  https://github.com/lighthouse-labs/react-simple-boilerplate
+
+  babel:
+    transpile ES6 + JSX -> JS
+
+  webpack:
+    automation tool; write scripts that define dev-time actions
+
+
+Live Code TIC TAC TOE
+=====================
+
+     APP ---------------------------
+     |  INSTRUCTION (text)
+     |  BOARD ---------------------
+     |  |  SQUARE (empty / X / O )
+     |  |  SQUARE (empty / X / O )
+
+   need to know:
+    - whose move it is
+    - what moves have been played
+
+    {
+      squares: [null, "X", "O", null, ...]
+      turn: "X"
+    }
+
+    actually, turn is not necessary, because it can be derived:
+      turn = is # of null spaces even? X else O
+
+    TIP: if you can derive some value you need, don't store it in state
+      (one less thing to remember to update when stuff changes!)
+
+
+
+
