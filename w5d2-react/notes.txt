@@ -1,0 +1,126 @@
+React Component Lifecycle Events
+=================================
+
+Components go through various states (not-mounted-to-DOM, mounting, mounted, updating)
+React allows you to set functions that will be called during each stage
+
+Awesome Image:
+  https://d2vvqscadf4c1f.cloudfront.net/RXZidTc7S5WEicK3fiNW_Screen%20Shot%202016-02-25%20at%2012.06.29%20PM.png
+
+React Docs:
+  https://facebook.github.io/react/docs/react-component.html
+
+
+Mount vs. Update
+
+  mount: when a component goes from not-existing to existing-in-the-DOM for the first time
+  update: when an already-mounted-component updates (b/c of changes to props or its state)
+
+  ex. a parent component can use an if statement to sometimes include a child component
+      this would mount and unmount the component
+
+
+Most of your components should be "dumb" (ie. only have a render() method)
+
+
+Common Uses of Lifecycle events:
+
+   1. Triggering custom state events when a component is mounted (ex. fetch some data via Ajax)
+   2. Deal w/ External Library Code (ex. Google Maps)
+
+
+
+
+Handling User Events
+====================
+
+  add handlers directly to the JSX dom element
+    <div onClick={(e) => {   }}>
+
+  DEMO: input elements
+
+
+
+
+
+Different Strategies for Organizing App State w/ React
+======================================================
+
+  1. Local State in Each Component
+     (using this.setState, and passing state-modifying functions down)
+
+    <APP>
+      initialState(): {currentRoom: ""}
+      changeRoom(x): fn that updates this.state.currentRoom (can be passed to child components via props)
+      render():
+
+      <ROOM-LIST>
+        initialState(): {rooms: []}
+        mount(): make an ajax request to get rooms, then update this.state.rooms
+        render():
+          loop through this.state.rooms:
+          <ROOM-NAME>
+            onClick(): call changeRoom(id-of-room) (received from <APP> via props)
+
+      <CHATROOM>
+        onUpdate(): make an ajax request to get message, then update this.state.messages
+        render():
+          loop through this.state.messages:
+          <MESSAGE>
+
+
+
+  2. Single Global State in the App Component
+     (using this.setState, and passing state-modifying functions down)
+
+
+
+  3. Single Global State in an External Object
+     (global functions to modify state (which make sure to call React.render() ) and read subsets of state)
+
+      window.state = {
+        currentRoom: null,
+        messages: [],
+        rooms: []
+      }
+      state.setState = function(k,v) {
+        state[k] = v;
+        render();
+      }
+      state.setRoom = function(roomId) {
+        setState("currentRoom", roomId);
+      }
+      state.setRooms = functions(rooms) {
+        setState("rooms", rooms);
+      }
+      state.setMessages = functions(messages) {
+        setState("messages", messages);
+      }
+      state.fetchRooms = function() {
+        ajax(...).then(function(resp) {
+          this.setRooms(resp);
+        });
+      }
+      state.fetchMessages = function() {
+        ajax(...).then(function(resp) {
+          this.setMessages(resp);
+        });
+      }
+
+    <APP>
+      render():
+      <ROOM-LIST>
+        render():
+          loop through state.rooms:
+          <ROOM-NAME>
+            onClick(): call state.setRoom(id-of-room)
+
+      <CHATROOM>
+        render():
+          loop through state.messages:
+          <MESSAGE>
+
+
+
+  4. Mix of the above (NOT recommended)
+
