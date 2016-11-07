@@ -1,0 +1,10 @@
+{
+  "name": "w2d1-bo",
+  "description": "LighthouseLabs W2D1 Breakout - Using APIs",
+  "main": "app.js",
+  "scripts": {
+  },
+  "dependencies": {
+    "request": "^2.75.0"
+  }
+}
