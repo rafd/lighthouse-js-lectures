@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Hello World</title>
+  </head>
+
+  <body>
+    <h1>Hello <%= name %></h1>
+
+    <ul>
+      <% for(color of colors) { %>
+        <li><%= color %></li>
+      <% } %>
+    </ul>
+
+    <% if(showMoon) { %>
+      <img src="/moon.jpg" width="200"/>
+    <% } %>
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" width="200"/>
+
+    <form method="POST">
+      <input>
+      <button>
+    </form>
+
+  </body>
+</html>
