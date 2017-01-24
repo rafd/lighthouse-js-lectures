@@ -32,7 +32,20 @@
     - create DOM elements:
        `$("<a>")`
     - delay a function until document is ready:
-       `$(function() { ... });`
+       `$(function() {
+            ...
+            ...
+            ...
+        });`
+
+       ===
+
+       $(document).on("ready", function() {
+            ....
+            ....
+            ....
+            ....
+       })
     - turn a DOM element into a jQuery object
        `$(document)`
     - turn an array/hash into a jQuery object (rare)
@@ -78,7 +91,12 @@ Builds on the previous one and shows a more realistic application.
   ```javascript
   $(`${userContent}`);
 
+  $(userContent).
+
   $("...").html(userContent);
+
+  $("...").append(userContent);
+
   ```
 
 
@@ -94,6 +112,7 @@ Builds on the previous one and shows a more realistic application.
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   }
+
   ```
 
 ## jQuery Alternatives & Why Size Matters™ [2-5m]
@@ -112,6 +131,19 @@ The size of jQuery is no longer much of an issue (30kb is about the size of a 50
 
 Also worth knowing:
 
+  - cdn
+    - various sites on the internet host popular libaries for you:
+      - https://www.jsdelivr.com/
+      - https://cdnjs.com/
+      - https://unpkg.com/
+      - https://www.bootstrapcdn.com/
+      - https://developers.google.com/speed/libraries/
+
+  - subresource integrity
+    - if getting scripts from a CDN, there is a risk of the provider being compromised and to start sending your users other files
+    - solution:
+        https://hacks.mozilla.org/2015/09/subresource-integrity-in-firefox-43/
+
   - minification
      - a process of compressing your JS code by removing whitespace and renaming variables
      - in dev, use the normal version (so you can debug)
@@ -121,3 +153,5 @@ Also worth knowing:
     - a compression algorithm that browsers understand
     - similar to how "zip" works
     - need to configure your server to use it
+
+
