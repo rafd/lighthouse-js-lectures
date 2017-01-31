@@ -39,8 +39,8 @@ db.destroy();
 To run a single query, you will need to end it with a `.then(...)`:
 
 ```javascript
-db.select("name").from("artists").then(function(row) {
-  console.log(row);
+db.select("name").from("artists").then(function(rows) {
+  console.log(rows);
 });
 ```
 
