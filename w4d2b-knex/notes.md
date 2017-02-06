@@ -39,8 +39,8 @@ db.destroy();
 To run a single query, you will need to end it with a `.then(...)`:
 
 ```javascript
-db.select("name").from("artists").then(function(row) {
-  console.log(row);
+db.select("name").from("artists").then(function(rows) {
+  console.log(rows);
 });
 ```
 
@@ -50,12 +50,12 @@ You can have Knex show you the SQL query it generates:
 
 ```javascript
 var query = db.select().from("artists");
-console.log(query.toSQL());
+console.log(query.toSQL().sql);
 ```
 
 ### Closing the Connection
 
-Knex keeps the db conncetion open and will prevent your program from ending until you call `db.destroy()`:
+Knex keeps the db connection open and will prevent your program from ending until you call `db.destroy()`:
 
 ```javascript
 db.destroy();
@@ -109,7 +109,7 @@ Seed files are scripts that can be run to populate the database with some initia
 
 http://knexjs.org/#Seeds-CLI
 
-Knex has a CLIP program that helps you create seed files:
+Knex has a CLI program that helps you create seed files:
 
 ```bash
 knex seed:make seed_name
