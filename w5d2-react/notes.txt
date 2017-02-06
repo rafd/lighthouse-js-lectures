@@ -40,87 +40,14 @@ Handling User Events
   DEMO: input elements
 
 
+  https://github.com/lighthouse-labs/react-simple-boilerplate
 
 
 
-Different Strategies for Organizing App State w/ React
-======================================================
 
-  1. Local State in Each Component
-     (using this.setState, and passing state-modifying functions down)
 
-    <APP>
-      initialState(): {currentRoom: ""}
-      changeRoom(x): fn that updates this.state.currentRoom (can be passed to child components via props)
-      render():
-
-      <ROOM-LIST>
-        initialState(): {rooms: []}
-        mount(): make an ajax request to get rooms, then update this.state.rooms
-        render():
-          loop through this.state.rooms:
-          <ROOM-NAME>
-            onClick(): call changeRoom(id-of-room) (received from <APP> via props)
-
-      <CHATROOM>
-        onUpdate(): make an ajax request to get message, then update this.state.messages
-        render():
-          loop through this.state.messages:
-          <MESSAGE>
+  + fetching data
 
 
 
-  2. Single Global State in the App Component
-     (using this.setState, and passing state-modifying functions down)
-
-
-
-  3. Single Global State in an External Object
-     (global functions to modify state (which make sure to call React.render() ) and read subsets of state)
-
-      window.state = {
-        currentRoom: null,
-        messages: [],
-        rooms: []
-      }
-      state.setState = function(k,v) {
-        state[k] = v;
-        render();
-      }
-      state.setRoom = function(roomId) {
-        setState("currentRoom", roomId);
-      }
-      state.setRooms = functions(rooms) {
-        setState("rooms", rooms);
-      }
-      state.setMessages = functions(messages) {
-        setState("messages", messages);
-      }
-      state.fetchRooms = function() {
-        ajax(...).then(function(resp) {
-          this.setRooms(resp);
-        });
-      }
-      state.fetchMessages = function() {
-        ajax(...).then(function(resp) {
-          this.setMessages(resp);
-        });
-      }
-
-    <APP>
-      render():
-      <ROOM-LIST>
-        render():
-          loop through state.rooms:
-          <ROOM-NAME>
-            onClick(): call state.setRoom(id-of-room)
-
-      <CHATROOM>
-        render():
-          loop through state.messages:
-          <MESSAGE>
-
-
-
-  4. Mix of the above (NOT recommended)
 

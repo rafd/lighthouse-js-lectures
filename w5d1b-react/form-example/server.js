@@ -16,3 +16,17 @@ new WebpackDevServer(webpack(config), {
 
     console.log('Running at http://0.0.0.0:3000');
   });
+
+
+const express = require("express");
+const app = express();
+
+app.get("/countries", (req, res) => {
+  res.json(countries);
+});
+
+app.listen(3001, function(err) {
+  console.log("Server started");
+});
+
+
