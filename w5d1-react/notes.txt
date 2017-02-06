@@ -5,7 +5,7 @@ Chatty Project
   - React
   - Websockets
 
-  DEMO
+  CHATTY DEMO
 
 
 Front-end JS History
@@ -77,26 +77,52 @@ SPA: Single Page Applications
   - entire UI built with JS
   - fetch data, push changes via AJAX to an API
   - client and server can be on different domains (although, need CORS)
-  - user can still experience different "pages", but, technically, there is one HTML page
-    - URLs can still change thanks to History PushState
+  - server is just:
+    - one route that returns the HTML
+    - resource routes (for js, css, images)
+    - mostly API routes (returning JSON)
+
+
+ASIDE:
+
+  two meanings of "page"
+
+   (1) developer view:
+        browser makes a new HTTP request, reloads page with response
+
+   (2) user view:
+         some UI that changes (+ url has changed)
+
+ - the "single page" in SPA is based definition (1) (a single HTML page)
+   - user can still experience different "pages" and urls (thanks to js History PushState API)
 
 
 React
 =====
 
-  declarative templates (called "components")
+  declarative templates / views (called "components")
   every time some data changes, re-calculate everything
-  (under the hood: shadow DOM, fancy diff algo)
+    (under the hood: shadow DOM, fancy diff algo)
 
   result:
     - good performance
-    - much easier to reason about
+    - much easier to think / reason about
 
   many different ways to manage state w/ React
     (React itself doesn't care):
     - state stored locally in each relevant component
     - one single global state ("flux" / "redux")
     - ... (many others)
+
+
+     DATA  ------------COMPONENTS-----------> HTML
+     {...}                fn()                <div>...</div>
+
+      ^
+      |                                         |
+       \----TRANSACTIONS------ EVENT HANDLERS --/
+               fn()                fn()
+
 
 
 Thinking in React
@@ -161,10 +187,18 @@ Thinking in React
       ... }
 
 
+ (3) Transactions / Events that change the state
+
+    Ex. Slack
+
+      compose a message
+      send a message
+      change group
+      change channel
+      ...
 
 
 * break *
-
 
 
 React Boilerplate
