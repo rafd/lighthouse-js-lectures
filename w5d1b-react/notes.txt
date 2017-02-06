@@ -1,7 +1,7 @@
 Different Strategies for Organizing App State w/ React
 ======================================================
 
-  1. Local State in Each Component
+  1. Local State in Each Component (chatty project style)
      (using this.setState, and passing state-modifying functions down)
 
     <APP>
@@ -30,7 +30,7 @@ Different Strategies for Organizing App State w/ React
 
 
 
-  3. Single Global State in an External Object
+  3. Single Global State in an External Object (Raf's reccomendation)
      (global functions to modify state (which make sure to call React.render() ) and read subsets of state)
 
       window.state = {
