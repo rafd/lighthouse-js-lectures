@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 
-// state
+// Normally, we would split components across files
+// State can also be stored within components
+// (but, there are many approaches to this)
+
+// STATE:
 
 const state = {
   squares: [null, null, null,
@@ -8,37 +12,32 @@ const state = {
             null, null, null]
 };
 
-const nextMove = () => {
+
+// DERIVED STATE:
+
+const nextTurn = () => {
   const nullCount = state.squares.filter((s) => {return s == null}).length;
   return nullCount % 2 == 0 ? "X" : "O"
 }
 
-// transactions
+
+// TRANSACTIONS:
 
 const play = (index) => {
   if(!state.squares[index]){
-    state.squares[index] = nextMove();
+    state.squares[index] = nextTurn();
     window.render()
   }
 }
 
-// views
 
-class Instruction extends Component {
-  render() {
-    return (
-      <div className="instruction">
-        {nextMove()} plays next
-      </div>
-    )
-  }
-}
+// VIEWS:
 
 class Square extends Component {
   render() {
     return (
-      <div className="square" onClick={function() { play(this.props.index) }.bind(this)}>
-      {this.props.value}
+      <div className="square" onClick={() => { play(this.props.index) }}>
+        {this.props.value}
       </div>
     )
   }
@@ -50,6 +49,16 @@ class Board extends Component {
      <div className="board">
        { state.squares.map( (value, i) => { return <Square index={i} value={value} /> } ) }
      </div>
+    )
+  }
+}
+
+class Instruction extends Component {
+  render() {
+    return (
+      <div className="instruction">
+        {nextTurn()} plays next
+      </div>
     )
   }
 }
