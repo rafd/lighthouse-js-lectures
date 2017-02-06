@@ -1,0 +1,20 @@
+$size: 50px;
+
+.app {
+  .instruction {
+
+  }
+  .board {
+    width: $size * 3;
+    .square {
+      width: $size;
+      height: $size;
+      border: 1px solid black;
+      display: inline-block;
+      box-sizing: border-box;
+      text-align: center;
+      line-height: $size;
+      vertical-align: top;
+    }
+  }
+}
