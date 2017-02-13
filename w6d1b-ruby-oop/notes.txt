@@ -1,0 +1,177 @@
+CLASS, INITIALIZE, INSTANCE VARIABLES and INSTANCE METHODS
+
+  we can define a new class just by doing:
+
+    class Foo
+    end
+
+  we can create "instances" of a class by doing:
+
+    f = Foo.new
+
+  an empty class is not useful, we want to use it to define methods and variables that all "instances" of that class have
+
+
+
+  a special method "initialize" is called whenever we create a instance
+    ie. Foo.new()
+
+  it is optional (but we almost always use it)
+
+  initialize can take arguments (which we pass to .new)
+
+  we use initialize most often to set the starting values of instance variables
+
+  instance variables are variables that belong to each instance
+
+  instance variables can be accessed by other methods
+    but CANNOT be directly access from "outside" the object
+
+
+  class BankAccount
+    def initialize(start_balance)
+      @balance = start_balance
+    end
+
+    def balance
+      @balance
+    end
+  end
+
+
+
+
+
+
+ATTR_READER, ATTR_WRITER, ATTR_ACCESSOR
+
+   it's annoying to have to write the following for every instance variable we want to by able to "read" or "write" from the outside:
+
+   # reader
+   def foo
+    @foo
+   end
+
+   # writer
+   def foo= (foo)
+    @foo = foo
+   end
+
+   ruby has shortcuts:
+
+     attr_reader :foo    # creates the .foo 'reader' method above
+
+     attr_writer :foo    # creates the .foo= 'writer' method above
+
+     attr_accessor :foo   # creates both methods
+
+
+  it becomes very useful when you need to do it for many methods:
+    ex:
+       attr_accessor :name, :id, :email, :address
+
+
+
+
+INHERITANCE and SUPER
+
+  its useful to be able to create new classes that "inherit" all the methods from another class, and make some small changes
+    ex. BankAccount and SavingsAccount
+
+  we do this with the following syntax:
+
+    class SavingsAccount < BankAccount
+    end
+
+
+  when we do this, it's useful for the new class to be able to overwrite the methods in its "superclass"/"parent"
+     if we define a method in the "subclass"/"child" it will overwrite the parent's methods
+
+     ex.
+       class BankAccount
+          def some_method
+            5
+          end
+       end
+
+
+
+      class SavingsAccount < BankAccount
+         def some_method
+           10
+         end
+       end
+
+
+   ...but it's also useful to be able to refer to the method we're overwriting, and ruby let's us do that by the magic method "super"
+     (see bank_account.rb)
+
+
+
+CLASS VARIABLES
+
+  class Foo
+
+     @@bar = 0
+
+     # instance methods can access class variables
+     # but there only one class variable!
+     # whereas instance variables exist for EACH instance
+
+     def some_instance_method()
+       @@bar += 1
+     end
+
+  end
+
+
+
+
+
+
+CLASS METHODS
+
+  class Foo
+
+     def self.foobar
+       # ....
+     end
+
+  end
+
+  Foo.foobar()
+
+
+PRIVATE INSTANCE METHODS
+
+    instance methods are "public" by default
+      ie. they can be accessed "outside" the object
+
+
+    it is possible to make instance methods private
+      (so they cannot be accessed outside the instance)
+
+    this is useful in indicating that certain methods are "implementation details" only
+
+    you do it by putting "private" above a method, ex.
+        def Foo
+            def some_public_method
+              some_private_method(5)
+            end
+
+
+
+            private
+
+            def some_private_method(n)
+              # ...
+            end
+        end
+
+        f = Foo.new
+
+        f.some_public_method    # works
+
+        f.some_private_method(10)  # not allowed, b/c private!
+
+    once you use "private" all methods below it become private
