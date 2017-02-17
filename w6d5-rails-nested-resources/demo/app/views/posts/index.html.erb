@@ -1,0 +1,20 @@
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <%= post.content %>
+      –<%= link_to(post.user.email, post.user) %>
+      <ul>
+        <% post.replies.each do |reply| %>
+          <li>
+              <%= reply.content %>
+              –<%= link_to(reply.user.email, reply.user) %>
+          </li>
+        <% end %>
+        <%= form_for [post.user, post, @reply] do |f| %>
+          <%= f.text_area :content %>
+          <%= f.submit %>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>

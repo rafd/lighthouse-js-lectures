@@ -1,0 +1,176 @@
+# REST
+
+  way of organizing routes for resources
+  “resource” ~= Model/Class ~= Table (most of the time, but sometimes an abstraction, ex. sessions)
+
+  ```
+  PLURAL
+
+    GET /things                  lists all things          Thing.all
+
+    GET /things/:id              info about id             Thing.find(id)
+
+    GET /things/:id/edit         form for editing thing
+
+    GET /things/new              form for new thing
+
+    POST /things                 create a new thing        Thing.create(params)
+      (w/ thing data)
+
+    PUT /things/:id              update a thing            Thing.find(id).update(params).save()
+      (w/ thing data)
+
+    DELETE /things/:id           delete a thing            Thing.find(id).destroy
+
+
+  SINGULAR
+
+    GET /thing                   info about thing
+
+    GET /things/edit             form for editing thing
+
+    GET /thing/new               form for new thing
+
+    POST /thing                  create thing
+      (w/ thing data)
+
+    PUT /thing                   update thing
+      (w/ thing data)
+
+    DELETE /thing                delete thing
+
+
+  NESTED
+
+  GET /owner/:id/things/:id    info about thing belonging to owner
+
+  ...
+
+  ```
+
+
+# Nested Resources in Rails
+
+  http://guides.rubyonrails.org/routing.html
+
+
+  `bin/rake routes` is your best friend
+
+
+  ## Re: REST
+
+
+    -> good for APIs
+        - (although GraphQL begs to differ)
+
+    -> for site URLs, ok starting point, but in practice, do a lot of manual changes
+
+        - for SEO, want a better ID than DB id (typically use a "slug"):
+            instead of:
+               //somesite.com/authors/123455/posts/123551
+            want:
+               //somesite.com/authors/rafd/posts/6-ways-you-suck-at-seo
+            or better:
+               //somesite.com/rafd/6-ways-you-suck-at-seo
+
+        - for better UX, often have forms *not* on their own pages
+
+        - often have transactions that involve multiple database things
+
+        - often have different event names
+            ex. login, logout vs. "create session" "delete session"
+
+        - often have more than one "update" event
+            ex. bank account: withdraw, deposit  (vs. just "update balance")
+
+
+    Rails by default conflates API routes and UI routes
+
+      in practice, should seperate API routes
+        - API routes  under /api/...  (returning JSON, follow REST)
+        - site routes    under /   (returning HTML, follow whatever makes sense)
+
+
+
+
+  ## plural resources (typical)
+
+    ```
+    resources :posts
+    ```
+
+
+  ## singular resources
+
+    for things there is only one ever one of, from the user's POV
+      most commonly for:
+        Session (login/logout)
+        Current User (register, edit my account, etc)
+
+
+    ```
+    resource :session
+    ```
+
+
+  ## nested resources
+
+    ```
+    resources :authors do
+      resources :posts
+    end
+    ```
+
+    you will need to change how you do your `form_for`:
+    ```
+    <%= form_for [author, post] do |f| %>
+      <%= f.text_area :content %>
+      <%= f.submit %>
+    <% end %>
+    ```
+
+
+    how far to nest?
+
+      /authors/12345/posts/41245
+
+      or just:
+
+      /posts/12345
+
+      nest when you think it makes sense (from how user uses it)
+      (generally) avoid more than 2 levels
+
+
+    ### shallow nesting
+      http://guides.rubyonrails.org/routing.html#shallow-nesting
+
+
+
+  ## namespaced resources
+
+    when you need to prefix a group of routes
+      commonly for:
+        /admin/...
+        /api/...
+
+   ```
+   namespace :admin do
+     resources :users
+   end
+   ```
+
+    expects `Admin::UsersController` in `./app/controllers/admin/users_controller.rb`
+
+
+# DEMO
+
+  files of note:
+
+  ```
+  config/routes.rb
+  ```
+
+  ```
+  app/views/posts/index.html.erb
+  ```
