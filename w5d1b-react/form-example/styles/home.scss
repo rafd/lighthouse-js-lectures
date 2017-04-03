@@ -1,9 +1,20 @@
-h1 {
-  color: tomato;
+@mixin view {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5px;
 }
-.view {
-   border: 1px solid black;
-   margin: 5px;
-   padding: 5px;
 
+#react-root {
+  >.app {
+    @include view;
+    >.search {
+      @include view;
+    }
+    >.results {
+      @include view;
+      >.result {
+        @include view;
+      }
+    }
+  }
 }

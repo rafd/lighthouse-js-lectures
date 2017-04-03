@@ -29,8 +29,7 @@ class Result extends Component {
 
    render() {
      return (
-       <div className="result view">
-         RESULT
+       <div className="result">
          {this.props.content}
        </div>
       )
@@ -40,8 +39,7 @@ class Result extends Component {
 class Results extends Component {
    render() {
      return (
-       <div className="results view">
-         RESULTS
+       <div className="results">
          {
            this.props.results.map(function(result){
               return (
@@ -58,8 +56,7 @@ class Results extends Component {
 class Search extends Component {
    render() {
      return (
-       <div className="search view">
-         SEARCH
+       <div className="search">
          <input
            value={this.props.query}
            onChange={(ev) => {
@@ -88,8 +85,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app view">
-        APP
+      <div className="app">
         <Search query={this.state.query} updateQuery={this.updateQuery}/>
         <Results results={this.state.results}/>
       </div>
