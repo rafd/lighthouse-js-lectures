@@ -4,7 +4,7 @@ Bundler
 
   after creating/update a Gemfile (see below), run `bundle install`
 
-  can also do: `bundle exec ...` to guarantee that certain gems are used when running a script
+  can also do: `bundle exec ruby myscript.rb` to guarantee that certain gems are used when running a script
 
   creates/uses two files in your project's directory:
 
@@ -60,7 +60,7 @@ ORM
 
     ActiveRecord
 
-      the class we want to persists knows about the database (ex. Contact)
+      the class we want to persist knows about the database (ex. Contact)
         class knows how to retrieve records (ex. Contact.all, Contact.find(...) )
         instances know how to create, update, delete themselves (ex. c.save, c.delete)
 
