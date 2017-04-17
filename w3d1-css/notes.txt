@@ -1,0 +1,97 @@
+this week's project demo
+
+housekeeping note:
+  next projects: less step-by-step, more you figuring out
+
+Semantic HTML
+
+  http://html5doctor.com/element-index/
+
+  html tags can add meaning to their content
+
+  <p> vs <div>
+  <h1> vs <div>
+  <main> vs <div>
+
+  software that consumes html uses this information
+  ex.
+    - browsers display different tags in different ways (or provide different right click options, etc.)
+        - button, headings
+        - email, address
+    - screen readers, and other accessibilty programs rely on various tags
+    - google (search engine crawlers) use tags and structure to infer how relevant a site is to a keyword 
+    - summary / embed widgets make use of site info
+
+
+
+CSS
+
+  complex, but, not random
+    for a while, it will seem like you're just arbitrarily fiddling
+    there are likely multiple ways to achieve a given goal
+      some are "bad" (ex. using pixels for everything, design can't adapt to changes easily)
+      some are better than others:
+        ...less css or less HTML
+        ...more cross browser compatible
+      will likely still end up with 2 or 3 "ok" approaches
+
+    goals:
+      - understand how a browser reads CSS, so you can make use of CSS precisely
+      - learn more and more of what CSS has to offer, gives you more tools to attack a problem
+
+  CSS box model
+
+    http://guyroutledge.github.io/box-model/
+
+    box sizing: border-box (non-default)
+
+    different layout modes:
+      display: block, inline, inline-block, flex, grid, table
+      position: relative, absolute
+      float
+    
+    re: floating
+      use sparingly, tpyically, inline-block, position: absolute + relative, or flexbox can achieve what you need better
+
+      if you are using float, you'll probably want to also make use of:
+        clear: both;
+        overflow: auto; or hidden
+
+  reset / normalize
+
+    each browser has default styles, 2 approaches to make things easier:
+
+      (1) CSS resets
+         
+          stylesheets that remove all the default styles
+          (reccomended when making web "apps")
+
+          http://cssreset.com/
+
+      (2) CSS normalize 
+
+          stylesheets that apply the same styles across browsers
+          (recommended for "websites", especially text-centric content, b/c, defaults are usually pretty good, just inconsitent)
+
+          https://necolas.github.io/normalize.css/
+
+  organizing CSS
+
+    many approaches (rules in alpha order, rules based on type, styles in alpha/precedence order etc.)
+    css preprocessors (SASS) change everything, so, for now, just try to keep related styles together)
+
+
+  flexbox
+    
+    not covering in this course, but, so good
+    used to not be well supported by browsers, but very good support now
+
+    https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+
+LIVE CODE
+
+  discuss how to break up a design into elements + dimensions / positioning 
+
+  + CSS workflow w/ DevTools
+
