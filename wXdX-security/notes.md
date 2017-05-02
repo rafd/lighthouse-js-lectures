@@ -32,6 +32,7 @@ Passing "untrusted data" to an interepreter, ex: when creating a database query.
   something that evaluates a string ("runs" a string as code)
   ex. SQL, Regex, require("..."), eval("..."), EJS (and other templating languages)
   also be careful with server-side compiling React apps
+  mongo too: https://blog.sqreen.io/mongodb-will-not-prevent-nosql-injections-in-your-node-js-app/
 
 
 BAD:
@@ -101,9 +102,11 @@ STRATEGIES
       ex. password reset without sending an email
 
  - session ids exposed via URLs
-      (easy to steal)
+      ex. bank.com/?session=125959125
+      (easy to steal; accidentally share; stay in history)
 
- - session that don't expore (or aren't rotated)
+ - session that don't expire (or aren't rotated)
+     if forget to logout, can get access to computer and be logged in
      if stolen, provide permanent access for the attacker
 
  - passwords, session ids, other credentials sent over unencrypted connections
@@ -113,7 +116,7 @@ STRATEGIES
 
 ## #3 - XSS (Cross Site Scripting)
 
-Evaluating untrusted data in the browser (in JS).
+Evaluating untrusted data in the browser (in JS, CSS) or server (EJS, ERB).
 
 Ex.
   Allowing a tweet like this: <script>alert("PWND");</script>
@@ -131,6 +134,12 @@ Ex. CSS
   Ex. `{ background-url: user_provided;}`
   URL could be: `"javascript:alert('PWND')"`
 
+Ex. github
+  allows users to create "github pages" (ie. hosts sites for them)
+     users can put anything on the site
+  used to be hosted at your-name.github.com
+    ---> could steal github.com cookies of any users
+  had to move user hosted pages to a different domain (*.github.io)
 
 STRATEGY:
 
@@ -147,13 +156,16 @@ STRATEGY:
 https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet
 
 
-## #4 - Insecure Direct Object References
+## #4 - Broken Access Control
 
 Accepting user input as correct/allowed.
+Forgetting that an "internal" part of your application can be accessed directly.
+Ex. assuming that your client-side UI is the only source of HTTP requests
 
 ex. cookie:  user-id=12345
 ex. form:    price=10.00
 ex. url:     bank.com/accounts/123456236
+ex. url:     foo.com/some/page?admin=true
 
 "authentication":
   verifying identity
@@ -165,6 +177,7 @@ ex. url:     bank.com/accounts/123456236
 
 
 Solution:
+  - don't trust any input data (contents of HTTP requests are all "input")
   - authenticate and check permissions for any sensitive data / actions
   - don't expose actual object ids in public (URLs, HTML)
   - don't take actual object ids as input
@@ -177,20 +190,29 @@ Solution:
       logins / accounts
       encryption keys (cookie secret)
   - showing stack traces on errors
+  - not disabling directory listing
   - keeping unnecessary ports open
 
-https://www.npmjs.com/package/helmet
+solutions:
+  - repateable + automated deploy scripts
+  - https://www.npmjs.com/package/helmet
+  - use a PAAS like Heroku (which does some of this for you)
 
 
 
 ## #6 - Sensitive Data Exposure
 
   - sending data plain text over non-secure connection (ex. HTTP, EMAIL)
-  - using old/weak crypto
+      (easy to steal cookies, passwords over wifi)
+
+  - using old/weak/incorrect crypto for passwords, ssl
+
+  - autocomplete on sensitive fields
 
   Solutions:
 
-   - avoid handling secure data (ex. use Stripe, use Log in with Google)
+   - avoid handling and storing sensitive data 
+        (ex. use Stripe, use Log in with Google)
    - always use HTTPS
      - SSL certificates are now free!  NO EXCUSE!
          https://letsencrypt.org/
@@ -201,18 +223,24 @@ https://www.npmjs.com/package/helmet
 
 
 
-## #7 - Missing Function Level Access Control
+## #7 - Insufficient Attack Protection
 
-Forgetting that an "internal" part of your application can be accessed directly.
+(1) need to have methods to detect attacks 
+   
+  should have system in place to detect scripted attacks:
+    (ie. sql scanners, port scanners, password brute-force scripts, DDOS)
+    - monitor requests, 
+        if high-volume and/or high-error, then flag
+        if not something your UI can create, then flag
+    - monitor your main API (ex. http), and exposed sub-components (ex. database, server)
 
-Ex. assuming that your client-side UI is the only source of HTTP requests
+(2) responding to attacks 
 
-Ex. Can CURL GET "http://foo.com/some/page?admin=true"
+   auto-block or log + notify 
 
-Solutions:
+(3) quick way to patch / handle attacks
 
- - don't trust any input data (contents of HTTP requests are all "input")
- - check in each HTTP request handler that the action is allowed for that user
+
 
 
 
@@ -236,7 +264,8 @@ Solutions:
     <form method="POST" action="http://bank.com/....">
 
   SOLUTION:
-    - CSRF tokens
+    - samesite=strict on cookies
+    - CSRF tokens (most web frameworks have a library for this)
 
        when you create the form for YOUR site, you include a secret random token string, which is submitted with the form
        your server checks that the token that you gave the browser matches the token in the POST request
@@ -290,16 +319,22 @@ Solutions:
 
 
   SOLUTION
-    - run updates frequently
+    - run updates frequently (or, auto-update)
     - keep your app's packages up to date:
          https://www.npmjs.com/package/nsp
+         https://github.com/retirejs/retire.js/
+    - use a PAAS like Heroku (which does some of this for you)
 
 
+## #10 - Underprotected APIs
 
-## #10 - Unvalidated Redirects and Forwards
+APIs (usually to allow access for a mobile app) are frequently underprotected
 
-Ex. http://www.example.com/redirect.jsp?url=evil.com
-
+ - must treat all requests to API as untrusted
+     - still need SSL
+     - still need to be careful of Injection
+     - still need to be check access control
+     - ...
 
 
 
