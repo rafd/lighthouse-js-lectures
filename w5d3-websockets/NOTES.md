@@ -104,21 +104,25 @@ ex. chat app, email client, game, screen-share
    ```
    HTTP  WS  WebRTC     <- available to JavaScript in the browser
      \   /   /
-      TCP   UDP
+      TCP   UDP         <- available to apps w/ direct access to OS
         \  /
          IP
   ```
 
   ```
-  HTTP      text      request/response   reliable (delivery and order)   browser JS API   client<->server
+  HTTP      text      request/response   reliable (delivery and order)   browser JS API  
 
-  WS        text      bidirectional      reliable (delivery and order)   browser JS API   client<->server
+  WS        text      bidirectional      reliable (delivery and order)   browser JS API   
 
-  WebRTC    binary    bidirectional                                      browser JS API   peer<->peer
+  WebRTC    binary    bidirectional                                      browser JS API 
 
-  TCP       binary    bidirectional                                                       client<->server
+  TCP       binary    bidirectional      reliable (delivery and order)                 
 
-  UDP       binary    bidirectional                                                       peer<->peer
+  UDP       binary    bidirectional                                                   
 
-  IP        binary    bidirectional                                                       peer<->peer
+  IP        binary    bidirectional                                                  
   ```
+
+Further Reading:
+  https://en.wikipedia.org/wiki/OSI_model
+  https://en.wikipedia.org/wiki/Internet_protocol_suite
