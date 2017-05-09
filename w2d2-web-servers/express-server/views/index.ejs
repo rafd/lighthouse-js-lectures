@@ -13,14 +13,14 @@
     </ul>
 
     <% if(showMoon) { %>
-      <img src="/moon.jpg" width="200"/>
+      <img src="/moon.jpg" height="50"/>
     <% } %>
 
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" width="200"/>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" height="100"/>
 
-    <form method="POST">
-      <input>
-      <button>
+    <form method="POST" action="/handler">
+      <input name="name">
+      <button>Submit</button>
     </form>
 
   </body>

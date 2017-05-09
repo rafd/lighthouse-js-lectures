@@ -1,3 +1,3 @@
-npm install express ejs
+npm install express ejs body-parser
 
 node server.js

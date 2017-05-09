@@ -111,7 +111,10 @@ a web server ~= a single function
        url: '/',
        headers: { host: 'www.piedpiper.com',
                   referer: 'https://duckduckgo.com',
-                  ... }
+                  ... },
+       body: "...",
+       query: {foo: "bar"},
+       params: {key: "value"},
        ... lots more ... }
 ```
 
@@ -126,6 +129,18 @@ a web server ~= a single function
 
 
 see demo in ./http-server/server.js
+
+
+### Testing
+
+w/ Chrome:
+  open Developer Tools and go to the Network Tab
+
+w/ CURL:
+  GET:
+    curl localhost:8080/url/?foo=bar
+  POST:
+    curl -X POST --data "foo=bar" localhost:8080/url/
 
 
 ### Using the Express library
