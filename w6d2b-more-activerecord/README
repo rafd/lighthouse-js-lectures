@@ -1,0 +1,5 @@
+bundle install
+
+ruby db/schema.rb
+ruby db/seed.rb
+ruby app.rb
