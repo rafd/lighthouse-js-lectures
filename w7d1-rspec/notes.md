@@ -25,7 +25,7 @@ group :development, :test do
 end
 ```
 
-```bundle install``
+```bundle install```
 
 ```rails generate rspec:install```
 
