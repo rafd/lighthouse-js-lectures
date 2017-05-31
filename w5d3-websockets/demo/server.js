@@ -17,9 +17,13 @@ const server = new ws.Server({port: 4000});
 
 const drawEvents = [];
 
-server.on('connection', (client) => {
+server.on('connection', (client, req) => {
   console.log('connected');
 
+  // if need to check user authentication, can access cookie via req.headers.cookie 
+
+  // helper function to broadcast messages 
+  //  ie. send to all other clients except this one
   const broadcast = (message) => {
     server.clients.forEach((c) => {
       if(c != client) {
@@ -30,7 +34,6 @@ server.on('connection', (client) => {
 
   client.on('message', (rawMessage) => {
     const message = JSON.parse(rawMessage);
-    console.log('received message:', message);
 
     switch(message.cmd) {
       case 'draw':
@@ -40,6 +43,8 @@ server.on('connection', (client) => {
       case 'register':
         client.color = message.data.color;
         console.log("registered", client.color);
+
+        // send all events that we've received so far to the new client
         drawEvents.forEach((e) => {
           client.send(JSON.stringify(e));
         });
