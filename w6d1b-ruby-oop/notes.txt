@@ -1,3 +1,5 @@
+RUBY + OOP
+
 CLASS, INITIALIZE, INSTANCE VARIABLES and INSTANCE METHODS
 
   we can define a new class just by doing:
@@ -175,3 +177,73 @@ PRIVATE INSTANCE METHODS
         f.some_private_method(10)  # not allowed, b/c private!
 
     once you use "private" all methods below it become private
+
+
+
+
+NAMESPACING w/ MODULES
+
+  problem:
+    - projects often use many libraries (which include multiple classes defined by someone else)
+    - classes are globals
+    -> may run into a situation where two libraries define the same class
+         (one will overwrite or randomly extend the other ====> bad)
+
+  solution:
+    - when defining classes, can "nest" them inside of a module
+
+    instead of just:
+      class Account
+       ...
+      end
+
+      a = Account.new
+
+    we write:
+      module Bank
+        class Account
+          ...
+        end
+      end
+
+      a = Bank::Account.new
+
+
+
+
+
+"MULTI-INHERITANCE" w/ MODULES
+
+   inheritance is sometimes not a good food for your problem  
+  
+     ex. bank has various types of account types it offers, and each can have a combination of "aspects", like: gives interest or not, charges per transaction or not, waves fees when a certain minimum is hit, etc.
+
+    may not be able to create an inheritance tree that works
+       (end up having classes like AccountInterestGivingAndPerTransaction  AccountWaveFeesAndInterestGiving ...)
+
+    alternative: modules
+
+    modules can have instance variables and methods, and they can be "included" by classes, but, they themselves cannot be instantiated
+
+     module Foo
+       def bar(value)
+         @xyz = value
+       end
+     end
+
+     class Something
+       include Foo
+     end
+
+
+    ex.
+      class BusinessAccount
+        include InterestGiving
+        include OverdraftProtected
+        include TransactionFeeCharing
+        include TransactionFeeWaivingWithMinimumBalance
+      end
+
+
+
+
