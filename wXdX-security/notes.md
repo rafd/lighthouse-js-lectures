@@ -3,8 +3,19 @@
 Now that you can create web apps, it is your responsibility to make the work properly.
 
 
-Security issues are often non-technical
+
+usually...
+  allow attack to
+     do  or   see
+  something they're not supposed to
+
+
+
+
+Security issues are not just technical
    (ex. figuring out answers to password reset questions)
+      "social engineering"
+
 
 
 Direct vulnerabilities
@@ -14,6 +25,12 @@ Direct vulnerabilities
 Indirect vulnerabilities
   magnify chance or impact of other vulnerability
   ex. storing passwords plain text
+
+
+"impossible" to have perfect security,
+    try our best, mitigate both direct attacks and indirect ones
+
+       ex. not storing plain text pwds in db
 
 Need to balance convenience and security.
 
@@ -216,6 +233,7 @@ solutions:
    - always use HTTPS
      - SSL certificates are now free!  NO EXCUSE!
          https://letsencrypt.org/
+         cloudflare
          https://www.ssllabs.com/ssltest/
    - use bcrypt for encryption
 
@@ -266,6 +284,7 @@ solutions:
   SOLUTION:
     - samesite=strict on cookies
     - CSRF tokens (most web frameworks have a library for this)
+    - if using ajax, can require a http header
 
        when you create the form for YOUR site, you include a secret random token string, which is submitted with the form
        your server checks that the token that you gave the browser matches the token in the POST request
@@ -374,7 +393,7 @@ APIs (usually to allow access for a mobile app) are frequently underprotected
 
 ## Secure Communication
 
- - use a VPS
+ - use a VPN
      b/c 'no password' wifi is insecure
      b/c you can't be sure your mobile apps are using HTTPs
      b/c a website may switch from HTTPs to HTTP
