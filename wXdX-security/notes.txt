@@ -3,7 +3,6 @@
 Now that you can create web apps, it is your responsibility to make the work properly.
 
 
-
 usually...
   allow attack to
      do  or   see
