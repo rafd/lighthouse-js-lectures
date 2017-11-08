@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <title>Music Library</title>
+  </head>
+  <body>
+    <h1>Music Library</h1>
+    <% if(locals.searchQuery) { %>
+      <h2>Songs by <%= searchQuery %></h2>
+      <a href="/songs/">Clear Search</a>
+    <% } else { %>
+      <h2>All Songs</h2>
+      <form method="GET" action="/songs/search">
+         <input type="text" name="searchQuery">
+         <input type="submit" value="Search">
+      </form>
+    <% } %>
+  <ul>
+    <% for(song of songs) { %>
+      <li>
+        <div class="song">
+          <div class="title">
+            <a href="/songs/<%= song.id %>">
+              <%= song.title %>
+            </a>
+          </div>
+          <div class="artist">
+            <a href="/songs/search?searchQuery=<%= song.artist %>">
+              <%= song.artist %>
+            </a>
+          </div>
+        </div>
+        <form action="/songs/<%= song.id %>/delete" method="POST">
+          <input type="submit" value="Delete">
+         </form>
+      </li>
+    <% } %>
+  </ul>
+  <form action="/songs/" method="POST">
+    <label>
+      Title<br>
+      <input type="text" name="title"></title>
+    </label>
+    <br><br>
+    <label>
+      Artist<br>
+      <input type="text" name="artist"></title>
+    </label>
+    <br><br>
+    <label>
+      Youtube ID<br>
+      <input type="text" name="youtubeId"></title>
+    </label>
+    <br><br>
+    <input type="submit" value="Add">
+  </form>
+  </body>
+</html>
