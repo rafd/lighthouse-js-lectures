@@ -180,6 +180,8 @@ example: https://github.com/kvirani/express_mongo_todo_example
 - only `res.render(...)` or `res.redirect(...)` inside of the db callback
 
 - should have code to disconnect from the database when killing the app
+  - since mongodb queries are async, if you just kill your app without trying a proper db.close,  your queries might not have run yet
+  - see the example for code where we force node to db.close() before it stops running (and, as a result, also waits for any unfinished queries to finish)
 
 
 
