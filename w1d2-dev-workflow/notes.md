@@ -1,4 +1,4 @@
-# Dev Workflow
+# General Principles of Tackling Programming Problems
 
 
 ## understand the problem
