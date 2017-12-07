@@ -1,0 +1,15 @@
+{
+  "name": "w2d4-user-auth",
+  "version": "1.0.0",
+  "description": "user-auth in express",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2"
+  }
+}

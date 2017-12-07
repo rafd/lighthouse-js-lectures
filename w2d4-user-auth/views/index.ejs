@@ -1,0 +1,35 @@
+<% if(user) { %>
+
+  Logged in as: <%= user.email %>
+
+  <form method="POST" action="/logout">
+    <input type="submit" value="Log Out">
+  </form>
+
+<% } else { %>
+
+  <form method="POST" action="/login">
+    <label>
+      Email:
+      <input type="email" name="email">
+    </label>
+    <label>
+      Password:
+      <input type="password" name="password">
+    </label>
+    <input type="submit" value="Log In">
+  </form>
+
+  <form method="POST" action="/register">
+    <label>
+      Email:
+      <input type="email" name="email">
+    </label>
+    <label>
+      Password:
+      <input type="password" name="password">
+    </label>
+    <input type="submit" value="Register">
+  </form>
+
+<% } %>
