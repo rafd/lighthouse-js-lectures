@@ -1,0 +1,72 @@
+
+CONTROLLED vs UNCONTROLLED inputs
+
+  if you have an <input>, with a value={...}  then it will be "controlled" by React
+  React will make sure that the value of that input will be what it's supposed to be
+    meaning, that user input is "ignored" (unless you explicitly handle it)
+
+
+  example of component with controlled input:
+
+  class Form extends Component {
+     constructor (props) {
+       super(props);
+       this.state = {
+         query: ""
+       };
+     }
+     render() {
+       return (
+         <input
+           value={this.state.query}
+           onChange={(e) => {
+             // using value= above makes this input controlled
+             // we must now use onChange to handle updates
+             // e.target.value will contain the text *including* what the user typed
+             this.setState({query: e.target.value});
+           }}
+           />
+         )
+     }
+  }
+
+
+
+
+
+THREE WAYS OF DEALING WITH STATE IN REACT
+
+  See also: https://github.com/rafd/lighthouse-js-lectures/blob/master/w6d1b-react/notes.txt
+
+  1. each component keeps just the state it needs
+
+     CONS
+      - lots of stateful components (ie. more code, more complex behaviour)
+      - lots of passing values and functions as props
+
+
+  2. all state in top component   <----  (recommended for now)
+
+     PROS
+      - very few stateful components
+
+
+  3. all state in external state manager   <---- (recommended, in your future career, with lib like Redux or other)
+
+     PROS
+      - very few stateful components (even App)
+      - barely any passing of props
+        (because State object is available globally, anywhere)
+
+     CONS
+       - hard to make components that can be shared as a library
+       - global state becomes large
+
+
+RAF'S REACT ADVICE
+
+- put all state into App component
+- use stateless components as much as possible
+- use functional component syntax for stateless components
+- you can create a fns/txs object to help make passing functions easier (see AppTopLevelState demo)
+- use inline anonymous functions for event handlers
