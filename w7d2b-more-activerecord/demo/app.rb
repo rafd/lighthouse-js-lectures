@@ -2,9 +2,9 @@ require "pry"
 require "active_record"
 require_relative "db/config.rb"
 
-require_relative "./lib/user"
-require_relative "./lib/song"
-require_relative "./lib/rating"
+require_relative "./lib/User"
+require_relative "./lib/Song"
+require_relative "./lib/Rating"
 
 binding.pry
 

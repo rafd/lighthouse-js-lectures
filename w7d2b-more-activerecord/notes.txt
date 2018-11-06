@@ -96,6 +96,7 @@
   ```
 
 
+
 ## custom validations
 
   ```
@@ -104,7 +105,9 @@
   private
 
   def attr_is_even
-    errors.add(:attr, 'attr must be even') if attr and attr % 2 != 0
+    if attr and attr % 2 != 0
+      errors.add(:attr, 'attr must be even') 
+    end
   end
   ```
 

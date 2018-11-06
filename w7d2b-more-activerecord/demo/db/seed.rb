@@ -1,21 +1,21 @@
 require "active_record"
 require_relative "config.rb"
 
-require_relative "../lib/user"
-require_relative "../lib/song"
-require_relative "../lib/rating"
+require_relative "../lib/User"
+require_relative "../lib/Song"
+require_relative "../lib/Rating"
 
 User.destroy_all
 Song.destroy_all
 Rating.destroy_all
 
-user1 = User.create(name: "Alice", email: "Alice@example.com")
+user1 = User.create(name: "Alice", email: "alice@example.com")
 
 user1.songs << song11 = Song.create(title: "Sick Beat")
 user1.songs << song12 = Song.create(title: "Epic Tune")
 user1.songs << song13 = Song.create(title: "Mad Track")
 
-user2 = User.create(name: "Bob", email: "BOB@example.com")
+user2 = User.create(name: "Bob", email: "bob@example.com")
 
 user2.songs << song21 = Song.create(title: "Pretty Ditty")
 user2.songs << song22 = Song.create(title: "Long Song")

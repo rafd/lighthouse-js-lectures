@@ -2,7 +2,14 @@ class Song < ActiveRecord::Base
   belongs_to :user
   has_many :ratings, dependent: :destroy
 
-  # TODO validations
+  validates :title,
+    presence: true
+
+  validates :slug,
+    presence: true,
+    uniqueness: true,
+    format: { with: /[a-z-]*/,
+              message: 'invalid format' }
 
   before_save :add_slug
 
