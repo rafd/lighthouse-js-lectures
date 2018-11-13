@@ -23,6 +23,7 @@ db.insert({name: "Artist Name"}).into("artists").then(function(results) {
 
 // INSERT (w/ PROMISES)
 
+/*
 db.insert({name: "Artist Name"}).into("artists").then(function(results) {
   return db.insert({title: "Album Title", year: 2018, artist_id: results[0]}).into("albums");
 }).then(function(results) {
@@ -32,18 +33,19 @@ db.insert({name: "Artist Name"}).into("artists").then(function(results) {
 }).then(function(results) {
   console.log(results)
 });
-
+*/
 
 // DELETE
 
+/*
 db.delete().from("tracks").where({title: "Song Title"}).then();
 db.delete().from("albums").where({title: "Album Title"}).then();
 db.delete().from("artists").where({name: "Artist Name"}).then();
-
+*/
 
 // SELECT name FROM artists;
 
-/*
+
 
 var query = db.select("name").from("artists");
 
@@ -53,7 +55,8 @@ query.then(function(results) {
    console.log(results);
 });
 
-*/
+db.destroy();
+
 
 
 // SELECT title, number FROM tracks;
