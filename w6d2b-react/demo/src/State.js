@@ -1,40 +1,38 @@
-const countries = [
-  "Canada",
-  "Poland",
-  "Brazil",
-  "Korea",
-  "Zimbabwe",
-  "China",
-  "Japan",
-  "Taiwan",
-  "Americuh!"
-]
+import FakeRemoteDb from './FakeRemoteDb.js'
 
-const filterCountries = function(query) {
-  if(query.length > 0) {
-    return countries.filter(function(country) {
-      return country.match(new RegExp(query))
-    });
-  } else {
-    return [];
-  }
-}
-
-const state = {
+let actualState = {
   query: "",
   results: []
 };
 
-export default {
+const set = (newPartialState) => {
+  actualState = {...actualState, ...newPartialState};
+  window.render();
+}
 
-  get: (k) => {
-    return state[k];
+
+
+const State = {
+
+  // GETTERS
+
+  getQuery: () => {
+    return actualState.query;
   },
 
-  updateQuery: (newQuery) => {
-    state.query = newQuery;
-    state.results = filterCountries(newQuery);
-    window.render();
+  getResults: () => {
+    return actualState.results;
+  },
+
+  // SETTERS
+
+  onSearch: (newQuery) => {
+    set({query: newQuery});
+    
+    FakeRemoteDb.query(newQuery, (results) => {
+      set({results: results});
+    });
   }
 }
 
+export default State;

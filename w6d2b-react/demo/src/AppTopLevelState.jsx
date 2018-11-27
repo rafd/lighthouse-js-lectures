@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import FakeRemoteDb from './FakeRemoteDb.js'
 
 const Result = ({content}) => {
  return (
@@ -16,7 +17,7 @@ const Results = ({results}) => {
      {
        results.map((result) => {
           return (
-            <Result content={result} key={result}/>
+            <Result content={result.name} key={result.id}/>
           )
        })
      }
@@ -33,7 +34,7 @@ const Search = ({query, tx}) => {
      <input
        value={query}
        onChange={(e) => {
-         tx.updateQuery(e.target.value);
+         tx.onSearch(e.target.value);
        }}
      />
    </div>
@@ -44,39 +45,29 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      countries: [
-        "Canada",
-        "Poland",
-        "Brazil",
-        "Korea",
-        "Zimbabwe",
-        "China",
-        "Japan",
-        "Taiwan",
-        "Americuh!"
-      ],
       query: "",
       results: []
     }
 
-    const filterCountries = (query) => {
-      if(query.length > 0) {
-        return this.state.countries.filter((country) => {
-          return country.match(new RegExp(query))
-        });
-      } else {
-        return [];
-      }
-    }
-
+    // since all state is in App
+    // we create this object that contains all functions to change state
+    // this helps avoid passing multiple functions as props
     this.tx = {
-      updateQuery: (newValue) => {
-        this.setState({query: newValue,
-                       results: filterCountries(newValue) });
+      _updateQuery: (newValue) => {
+        this.setState({query: newValue});
+      },
+      _updateResults: (newResults) => {
+        this.setState({results: newResults});
+      },
+      onSearch: (query) => {
+        this.tx._updateQuery(query);
+        FakeRemoteDb.query(query, (results) => {
+          this.tx._updateResults(results);
+        })
       }
     }
 
-  }
+  } 
 
   render() {
     return (

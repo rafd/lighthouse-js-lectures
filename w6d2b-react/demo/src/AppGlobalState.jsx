@@ -15,9 +15,9 @@ const Results = ({results}) => {
     <div className="results view">
      RESULTS
      {
-       State.get("results").map((result) => {
+       State.getResults().map((result) => {
           return (
-            <Result content={result} key={result}/>
+            <Result content={result.name} key={result.id}/>
           )
        })
      }
@@ -30,11 +30,10 @@ const Search = ({query, tx}) => {
  return (
    <div className="search view">
      SEARCH
-
      <input
-       value={State.get("query")}
+       value={State.getQuery()}
        onChange={(e) => {
-         State.updateQuery(e.target.value);
+         State.onSearch(e.target.value);
        }}
      />
    </div>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import FakeRemoteDb from './FakeRemoteDb.js'
 
 class Result extends Component {
    render() {
@@ -20,8 +20,7 @@ class Results extends Component {
          {
            this.props.results.map((result) => {
               return (
-                <Result content={result}
-                        key={result}/>
+                <Result content={result.name} key={result.id}/>
               )
            })
          }
@@ -37,19 +36,21 @@ class Search extends Component {
        query: ""
      };
    }
+
+   handleInput = (e) => {
+     this.setState({query: e.target.value});
+     FakeRemoteDb.query(e.target.value, (results) =>
+      this.props.updateResults(results))
+   }
+
    render() {
      return (
        <div className="search view">
          SEARCH
-         <input
-           value={this.state.query}
-           onChange={(e) => {
-             this.setState({query: e.target.value});
-             this.props.updateResults(e.target.value);
-           }}
-           />
+         <input value={this.state.query}
+                onChange={this.handleInput} />
        </div>
-       )
+      )
    }
 }
 
@@ -58,33 +59,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      countries: [
-        "Canada",
-        "Poland",
-        "Brazil",
-        "Korea",
-        "Zimbabwe",
-        "China",
-        "Japan",
-        "Taiwan",
-        "Americuh!"
-      ],
       results: []
     };
+  }
 
-    const filterCountries = (countries, query) => {
-      if(query.length > 0) {
-        return countries.filter((country) => {
-          return country.match(new RegExp(query))
-        });
-      } else {
-        return [];
-      }
-    }
-
-    this.updateResults = (query) => {
-      this.setState({results: filterCountries(this.state.countries, query)});
-    }
+  updateResults = (results) => {
+    this.setState({results: results});
   }
 
   render() {
