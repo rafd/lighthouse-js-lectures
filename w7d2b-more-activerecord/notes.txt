@@ -59,7 +59,7 @@
 
     @user.ratings  # returns ratings
     @user.songs    # returns songs
-
+    @songs.users   # returns users
 
   ### dependent destroy
 
@@ -100,16 +100,21 @@
 ## custom validations
 
   ```
-  validate :attr_is_even
+  class Student
+    validate :age_is_even
 
-  private
+    private
 
-  def attr_is_even
-    if attr and attr % 2 != 0
-      errors.add(:attr, 'attr must be even') 
+    def age_is_even
+      if age and age % 2 != 0
+        errors.add(:age, 'age must be even') 
+      end
     end
   end
   ```
+
+
+
 
   # will run validation only if object.bar is truthy:
   validates :foo, presence: true, if: :some_attr
