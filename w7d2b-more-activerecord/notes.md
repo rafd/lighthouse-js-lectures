@@ -53,7 +53,7 @@
       belongs_to :user
       belongs_to :song
 
-    Songs
+    Song
       has_many :ratings
       has_many :users, through: :ratings
 
@@ -100,7 +100,7 @@
 ## custom validations
 
   ```
-  class Student
+  class Student < ActiveRecord::Base
     validate :age_is_even
 
     private
