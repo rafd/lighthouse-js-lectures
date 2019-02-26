@@ -124,13 +124,25 @@ db.schema.createTable('artists', function(table) {
 db.destroy();
 ```
 
-To run a single query, you will need to end it with a `.then(...)`:
+To run a single query, you will need to end it with a `.asCallback(...)` or a `.then(...)`:
 
 ```javascript
-db.select("name").from("artists").then(function(rows) {
+db.select("name").from("artists").asCallback(function(rows, err) {
   console.log(rows);
 });
+
+```javascript
+db.select("name").from("artists")
+.then((results) => ...)
+.then(...)
+.catch(...)
+.finally(() => {
+    db.destroy();
+  }
+)
 ```
+
+See the examples for differences between using callbacks (asCallback) or promises (then, catch, finally)
 
 ### Debugging
 
