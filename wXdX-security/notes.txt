@@ -1,19 +1,35 @@
+Web Security
+
+
+   "top 10" web vulnerabilities for devs
+
+   + how to protect yourself as a user
+
+
+
+
 # Web Security
 
 Now that you can create web apps, it is your responsibility to make the work properly.
 
 
 usually...
-  allow attack to
-     do  or   see
+  a vulnerability is any time someone is allowed to DO or SEE / READ / ACCESS
   something they're not supposed to
 
-
+  for web... the thing your trying to protect is the database
+    (but, the db is part of a system, so you have to protect the system too)
+    for web... our secure system boundary is typically at the server layer,
+       and we pay a lot of attention to the HTTP layer (data coming in is all 'insecure',
+        and we must take care to send out only data that we want)
+  
 
 
 Security issues are not just technical
    (ex. figuring out answers to password reset questions)
       "social engineering"
+
+
 
 
 
@@ -26,12 +42,40 @@ Indirect vulnerabilities
   ex. storing passwords plain text
 
 
+
+differentiate:
+  targeted attacks (some knowledgeable individually targeting you / your company / your app) 
+     very hard to protect against; basically 'arms race' between you and your attacker
+     (hope that you're never specifically targeted)
+
+  broad low effort attacks (ex. spam, vulnerability bots, etc.)
+     very common, you *will* be attacked in this way 
+        (any internet exposed computer is constanly attacked, ex. your network router, vps server)
+     reasonably easy to protect against (but must know how!)
+
+
 "impossible" to have perfect security,
     try our best, mitigate both direct attacks and indirect ones
-
        ex. not storing plain text pwds in db
 
-Need to balance convenience and security.
+
+
+Need to balance convenience vs. security.
+
+  Often, a "more secure" way of doing things is less convenient
+     ex. recommendation for passwords is to have unique 40+ random character passwords for every site
+     ex. credit cards - originally, very insecure but very convenient (just an account number), now chip+pin
+
+
+Need to balance cost vs. security.
+  
+  All these security efforts cost $. It's a risk vs. reward situation.
+
+
+
+
+
+
 
 
 # OWASP Top 10 Web Vulnerabilities
@@ -40,14 +84,28 @@ Need to balance convenience and security.
 
 Passing "untrusted data" to an interepreter, ex: when creating a database query.
 
+BAD:
+
+postgres.query("SELECT * FROM USERS WHERE id = " + params.id)
+
+GOOD:
+
+postgres.query("SELECT * FROM USERS WHERE id = $1", [params.id])
+
+
+
 "untrusted data"
   anything you haven't hardcoded
-  ie. user input, API responses, HTTP requests, HTTP parameters
+  ie. user input,  TTP requests, HTTP parameters, 
+      data from DB (b/c it came from user at some point),
+      API responses from external services
 
 "interpreter"
   something that evaluates a string ("runs" a string as code)
+
   ex. SQL, Regex, require("..."), eval("..."), EJS (and other templating languages)
   also be careful with server-side compiling React apps
+
   mongo too: https://blog.sqreen.io/mongodb-will-not-prevent-nosql-injections-in-your-node-js-app/
 
 
@@ -68,6 +126,8 @@ GOOD:
 ```
 var results = pg.query("SELECT * FROM accounts WHERE id= $1", [req.params.id]);
 ```
+
+
 The library "escapes" each value in the array.
 
 
@@ -88,30 +148,36 @@ STRATEGIES
 
 
 
+
+
+
+
 ## #2 - Broken Auth / Session Management
 
- - not storing sensitive data properly
-     ex. passwords
-       BAD: encryption algorithm (ex. AES)
-         passwords shouldn't be encrypted (which is a reverisible process)
-       BAD: normal hash function (ex. md5)
-       BAD: weak crypto hashing function (ex. SHA-1)
-       GOOD: strong proven crypto hash function (ex. bcrypt)
+"implementing user logins and sessions poorly"
 
-     ex. cookies
+doing it properly is hard; we taught you how to do it with passwords + encrypted cookies
+but there's a lot of ways... you have to think carefully about anything relating to
+deciding how you 'authenticate users', lots of ways to make mistakes
+
+typical:
+  - using just a cookie, or user-id parameter in URL or POST
+
+  - cookies
        BAD: not encrypted
        BAD: broken/weak encryption (ex. AES-128)
        GOOD: strong encryption (ex. AES-512)
 
-     ex. credit cards
-       ADVICE: avoid storing at all, use a 3rd party service
-
- - cookies that are not secure-only and HTTP-only
-     (easy to steal)
+also:
 
  - allowing unlimited password attempts
 
+ - allowing weak passwords
+
  - trusting registration without validating that the user owns the email account
+
+ - cookies that are not marked 'secure-only' and 'HTTP-only'
+     (easy to steal)
 
  - weak account management functions
       ex. easy password recovery process (trivial questions)
@@ -130,9 +196,15 @@ STRATEGIES
 
 
 
+
+
+
 ## #3 - XSS (Cross Site Scripting)
 
 Evaluating untrusted data in the browser (in JS, CSS) or server (EJS, ERB).
+
+Basically, injection... but from one user to another user (vs. user to your server)
+
 
 Ex.
   Allowing a tweet like this: <script>alert("PWND");</script>
@@ -144,18 +216,18 @@ Ex.
   Effectively, the attacker can run arbitrary JS on the other users page,
     can take actions as that user (ajax requests, clicking things)
 
+
 Ex. CSS
 
   Setting CSS based on user input.
   Ex. `{ background-url: user_provided;}`
   URL could be: `"javascript:alert('PWND')"`
 
-Ex. github
-  allows users to create "github pages" (ie. hosts sites for them)
-     users can put anything on the site
-  used to be hosted at your-name.github.com
-    ---> could steal github.com cookies of any users
-  had to move user hosted pages to a different domain (*.github.io)
+
+  "background-url: url(" user.bgcolor + ")"
+
+  javascript://arbitraryjshere
+
 
 STRATEGY:
 
@@ -174,60 +246,82 @@ https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Shee
 
 ## #4 - Broken Access Control
 
-Accepting user input as correct/allowed.
-Forgetting that an "internal" part of your application can be accessed directly.
-Ex. assuming that your client-side UI is the only source of HTTP requests
+incorrect authorization (vs. #2 was incorrect authentication)
 
-ex. cookie:  user-id=12345
-ex. form:    price=10.00
-ex. url:     bank.com/accounts/123456236
-ex. url:     foo.com/some/page?admin=true
 
 "authentication":
-  verifying identity
+  how you verify identity
   "this request came from Bob"
+  ex. email+password, or, cookie
 
 "authorization":
-   verifying permission
-   "Bob is allowed to make this request"
+   how you verify a user's permission to do something
+   "Bob is allowed to perform this action"
 
 
-Solution:
-  - don't trust any input data (contents of HTTP requests are all "input")
-  - authenticate and check permissions for any sensitive data / actions
-  - don't expose actual object ids in public (URLs, HTML)
-  - don't take actual object ids as input
+often... developers remember to write a check that "a user must be logged in to see this page"
+but they forget... "only users that are owners of this document are allowed to see this page"
+
+these kinds of checks must be done on *every* endpoint; tedious, but necessary
+
 
 
 
 ## #5 - Security Misconfiguration
 
+ie. setting up some security tool, thinking it makes things secure, but, not configuring it properly
+
+ex.
   - forgetting to change defaults
-      logins / accounts
-      encryption keys (cookie secret)
-  - showing stack traces on errors
-  - not disabling directory listing
+       encryption keys (cookie secret, password key) in frameworks
+          (usually all have the same default: "YOU_MUST_CHANGE_THIS_KEY_IN_PRODUCTION")
+       logins / accounts to db, routers, etc. 
+  - setting cookies without proper expiry, safe-site, http-only flags
+  - showing stack traces on errors in production
+  - not disabling directory listing in production
   - keeping unnecessary ports open
 
 solutions:
-  - repateable + automated deploy scripts
-  - https://www.npmjs.com/package/helmet
-  - use a PAAS like Heroku (which does some of this for you)
+  - understanding the tools that you're using
+  - repeateable + automated properly configured deploy scripts
 
 
 
 ## #6 - Sensitive Data Exposure
 
-  - sending data plain text over non-secure connection (ex. HTTP, EMAIL)
-      (easy to steal cookies, passwords over wifi)
+accidentally exposing data that shouldn't be exposed
+
+ex.
+ - API returning more data than it should
+
+ - unprotected or improperly protected endpoints
+
+ - forgetting to filter out passwords, cookies, etc. in logging systems
+
+ - sending data plain text over non-secure connection (ex. HTTP, EMAIL)
+   (easy to steal cookies, passwords over wifi)
+
+ - not storing sensitive data properly
+     ex. passwords
+       BAD: encryption algorithm (ex. AES)
+         passwords shouldn't be encrypted (which is a reverisible process)
+       BAD: normal hash function (ex. md5)
+       BAD: weak crypto hashing function (ex. SHA-1)
+       GOOD: strong proven crypto hash function (ex. bcrypt)
+
+     ex. credit cards
+       ADVICE: avoid storing at all, use a 3rd party service
 
   - using old/weak/incorrect crypto for passwords, ssl
 
   - autocomplete on sensitive fields
 
+
+
   Solutions:
 
-   - avoid handling and storing sensitive data 
+   - transfer as little as you need; store as little as you need
+   - avoid handling and storing sensitive data
         (ex. use Stripe, use Log in with Google)
    - always use HTTPS
      - SSL certificates are now free!  NO EXCUSE!
@@ -242,30 +336,65 @@ solutions:
 
 ## #7 - Insufficient Attack Protection
 
-(1) need to have methods to detect attacks 
-   
+
+ie. have no way to know if your system is/was under attack,
+    + have no way to respond to it in a reasonable time
+
+
+SOLUTION
+
+
+(1) need to have methods to detect attacks
+
   should have system in place to detect scripted attacks:
     (ie. sql scanners, port scanners, password brute-force scripts, DDOS)
-    - monitor requests, 
+    - monitor requests,
         if high-volume and/or high-error, then flag
         if not something your UI can create, then flag
     - monitor your main API (ex. http), and exposed sub-components (ex. database, server)
+    - log requests (BUT, be careful not to log sensitive data)
 
-(2) responding to attacks 
+  ideally, log AND notify
 
-   auto-block or log + notify 
+(2) have some way to respond to attacks
 
-(3) quick way to patch / handle attacks
+  speed-of-response is a big factor (need to be able to "shut-it-down" quickly, or better: redeploy quickly)
 
+  ideally, based on detection in (1), can auto-block
+
+
+ex. common tool: fail2ban
+
+advice: for log in, use something like Auth0 or Google Login (b/c they do the above already)
 
 
 
 
 ## #8 - CSRF (Cross-Site Request Forgery)
 
-  Attacker gets victim to visit a page he controls, triggering a GET or POST request as that user to a different domain.
+  (subtle attack that relies on how browsers make HTTP requests)
 
-  Ex. 1
+  basically... an Attacker gets a victim to visit a page he controls (ex. evilkitten.com), 
+  and has some HTML / JS that triggers a GET or POST request to a different domain (ex. yourapp.com).
+  If yourapp.com is vulnerable, then those requests are done using the logged-in user's cookie.
+
+  Ex. worst case:
+     tab 1: logged into yourbank.com
+     tab 2: visit someothersite.com, it makes a request that transfers money out of your account
+
+
+  Real World Example:
+    github
+      allows users to create "github pages" (ie. hosts sites for them)
+         users can put anything on the site
+      used to be hosted at your-name.github.com
+        ---> could make any ajax requests using github.com cookies of any users that were viewing
+      had to move user hosted pages to a different domain (*.github.io)
+      (also can be considered an XSS attack)
+
+
+
+  Ex. 1 - GET
 
   Attacker embeds an image on another page and issues a request:
   <img src="http://bank.com/app/transferFunds?amount=1500&destinationAccount=attackersAcct#" width="0" height="0" />
@@ -275,26 +404,30 @@ solutions:
    - GET requests should NEVER do any state change action
 
 
-  Ex. 2
+  Ex. 2 - POST
 
   Attacker embeds a form + some JS to click it:
-    <form method="POST" action="http://bank.com/....">
+     <iframe>
+       <form method="POST" action="http://bank.com/....">
+        + autosubmit w/ jquery
+
 
   SOLUTION:
-    - samesite=strict on cookies
+    - samesite=strict on cookies (new method)
     - CSRF tokens (most web frameworks have a library for this)
-    - if using ajax, can require a http header
 
        when you create the form for YOUR site, you include a secret random token string, which is submitted with the form
        your server checks that the token that you gave the browser matches the token in the POST request
 
-    - other approaches: https://www.owasp.org/index.php/CSRF
+    - if using ajax, can require all requests to have some custom http header
 
+    - other approaches: https://www.owasp.org/index.php/CSRF
 
 
   Ex. 3
     You enable CORS on your site to allow your SPA Ajax do cross-domain requests
     Now, if a victim vists an an attacker's site, the attacker can make an ajax requests to your site using the victims cookies.
+
 
     SOLUTION:
       - Be VERY careful about how you configure CORS
@@ -305,6 +438,8 @@ solutions:
 
 
 
+
+
 ## #9 - Using Components with Known Vulnerabilities
 
   - out of date software
@@ -312,7 +447,8 @@ solutions:
         - operating system libraries
         - node
         - database
-        - node libraries
+        - node libraries (you should check your deps, and all their deps, etc.)
+        - docker build files
         - front-end libraries
 
   - you must keep your software up to date
@@ -346,14 +482,27 @@ solutions:
 
 ## #10 - Underprotected APIs
 
+Forgetting that an "internal" part of your application can be accessed directly.
+Ex. assuming that your client-side UI is the only source of HTTP requests
+
 APIs (usually to allow access for a mobile app) are frequently underprotected
 
- - must treat all requests to API as untrusted
+ex. cookie:  user-id=12345
+ex. form:    price=10.00
+ex. url:     bank.com/accounts/123456236
+ex. url:     foo.com/some/page?admin=true
+
+Solution:
+  - don't trust any input data (contents of HTTP requests are all "input")
+  - authenticate and check permissions for any sensitive data / actions
+  - don't expose actual object ids in public (URLs, HTML)
+  - don't take actual object ids as input
+  - must treat all requests to API as untrusted
      - still need SSL
      - still need to be careful of Injection
      - still need to be check access control
      - ...
-
+  - https://www.npmjs.com/package/helmet
 
 
 
@@ -395,8 +544,18 @@ APIs (usually to allow access for a mobile app) are frequently underprotected
  - use a VPN
      b/c 'no password' wifi is insecure
      b/c you can't be sure your mobile apps are using HTTPs
-     b/c a website may switch from HTTPs to HTTP
+     b/c a website may have some pages not on HTTPs (or some ajax requests)
+     reccomended: algo vpn (script that creates your own VPN)
 
- - don't send sensitive data via email
-    - consider all emails to be public
-    - use Signal app for secure communication
+ - use ublock origin (or other adblock) (browser plugin)
+      less third-party js running in your browsers
+
+ - use noscript (browser plugin)
+      by default, does not run any js on any page until you unblock it
+
+ - use https-everywhere (browser plugin)
+     by default, does not allow you to go to an http page 
+
+ - don't send sensitive data via email, text, phone
+    - consider all emails, text messages, phone calls to be public
+    - use Signal app for secure communication (or... Keybase)
