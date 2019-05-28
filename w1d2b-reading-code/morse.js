@@ -6,7 +6,7 @@ var morseLookup = {
 var englishLookup = {
   "...": "s",
   "---": "o"
-}
+};
 
 function englishCharToMorseChar(char) {
   return morseLookup[char.toLowerCase()];
@@ -29,7 +29,6 @@ function englishToMorse(string) {
 
 function morseToEnglish(string) {
   var out = "";
-  var chars = string.split("");
 
   string.split(" ").forEach(function(c) {
     out += morseCharToEnglishChar(c);

@@ -11,6 +11,8 @@
 
  - walk through example: morse code program
 
+
+
 ## Scope
 
   - what is “scope”?
@@ -30,27 +32,28 @@
 
 
 
-## Functions as Values
+## Debugging
 
- - see functions.js
 
- - in JS, functions are values (like numbers, or strings, or arrays...)
+    1. narrow things down
+          
+           your toolbox:
+             - read code / follow its execution
+             - identify parts of code that can be ignored
+             - use console.log
+             - use debugger
+             - add extra tests
+             - add new tests that only test subsets of the code (ex. some function)
+             - rewrite part of the code in a seperate file 
 
-   - can be created without a name
-     - ex. `function(x) { return x + 1 }`
-     - we call these "anonymous functions"
-     - very useful, very common to do this
-       - ex. in a `foreach`:
-        ```
-        someArray.forEach(function(x) {
-          console.log(x);
-        });
-        ```
+    
+    2. understand why you are getting the result you are getting
+     
+          - make guesses, modify code to see if they are correct
+            (if not, UNDO the changes, try again)
 
-   - can be given a name and referred to by that name
-     - ex.
-       ```
-       var myFunction = function(x) { return x + 1 };
 
-       var newArray = someArray.map(myFunction);
-       ```
+
+    once you understand the problem, the solution should be trivial, so...
+
+    3. fix it
