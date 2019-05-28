@@ -29,10 +29,11 @@ function englishToMorse(string) {
 
 function morseToEnglish(string) {
   var out = "";
+  var chars = string.split("");
 
-  string.split(" ").forEach(function(c) {
-    out += morseCharToEnglishChar(c);
-  });
+  for(var i = 0; i < string.length; i++) {
+    out += morseCharToEnglishChar(chars[i]);
+  }
 
   return out;
 };
