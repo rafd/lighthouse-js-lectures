@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="tic-tac-toe-plan.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="482.51642"
+     inkscape:cy="494.04475"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showborder="false"
+     inkscape:window-width="3840"
+     inkscape:window-height="2036"
+     inkscape:window-x="0"
+     inkscape:window-y="68"
+     inkscape:window-maximized="1"
+     inkscape:lockguides="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect815"
+       width="78.406776"
+       height="71.895508"
+       x="23.957458"
+       y="60.466469" />
+    <rect
+       y="60.466469"
+       x="51.118893"
+       height="71.895508"
+       width="21.916103"
+       id="rect817"
+       style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.99999994;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect819"
+       width="78.328491"
+       height="21.937881"
+       x="23.970894"
+       y="87.741386" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="34.172985"
+       y="76.915825"
+       id="text823"><tspan
+         sodipodi:role="line"
+         id="tspan821"
+         x="34.172985"
+         y="76.915825"
+         style="stroke-width:0.26458332">x</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="57.814064"
+       y="76.805122"
+       id="text827"><tspan
+         sodipodi:role="line"
+         id="tspan825"
+         x="57.814064"
+         y="76.805122"
+         style="stroke-width:0.26458332">o</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="128.97261"
+       y="68.738388"
+       id="text831"><tspan
+         sodipodi:role="line"
+         id="tspan829"
+         x="128.97261"
+         y="68.738388"
+         style="stroke-width:0.26458332">Next Player: x</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="128.77527"
+       y="106.36363"
+       id="text835"><tspan
+         sodipodi:role="line"
+         id="tspan833"
+         x="128.77527"
+         y="106.36363"
+         style="stroke-width:0.26458332">Winner: X</tspan></text>
+    <rect
+       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect837"
+       width="66.55011"
+       height="22.717911"
+       x="128.82391"
+       y="117.66215" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="137.91107"
+       y="134.23286"
+       id="text841"><tspan
+         sodipodi:role="line"
+         id="tspan839"
+         x="137.91107"
+         y="134.23286"
+         style="stroke-width:0.26458332">RESTART</tspan></text>
+    <rect
+       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#ff2a2a;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect843"
+       width="227.44637"
+       height="114.65862"
+       x="-7.4835467"
+       y="40.955791" />
+    <rect
+       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#ff2a2a;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect853"
+       width="25.925144"
+       height="21.381561"
+       x="74.808609"
+       y="63.214661" />
+    <circle
+       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#ff2a2a;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path935"
+       cx="187.75684"
+       cy="348.44937"
+       r="80.84903" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="175.89117"
+       y="258.63174"
+       id="text939"><tspan
+         sodipodi:role="line"
+         id="tspan937"
+         x="175.89117"
+         y="258.63174"
+         style="stroke-width:0.26458332;font-weight:bold">STATE</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="178.2095"
+       y="442.51184"
+       id="text943"><tspan
+         sodipodi:role="line"
+         id="tspan941"
+         x="178.2095"
+         y="442.51184"
+         style="stroke-width:0.26458332;font-weight:bold">DOM</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="25.345146"
+       y="310.29861"
+       id="text947"><tspan
+         sodipodi:role="line"
+         x="25.345146"
+         y="310.29861"
+         style="stroke-width:0.26458332"
+         id="tspan139">DERIVED STATE</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="270.30447"
+       y="73.860062"
+       id="text63"><tspan
+         sodipodi:role="line"
+         id="tspan61"
+         x="270.30447"
+         y="73.860062"
+         style="stroke-width:0.26458332">state = {</tspan><tspan
+         sodipodi:role="line"
+         x="270.30447"
+         y="87.089226"
+         style="stroke-width:0.26458332"
+         id="tspan79">  grid: [&quot;x&quot;,&quot;o&quot;,null,null...]</tspan><tspan
+         sodipodi:role="line"
+         x="270.30447"
+         y="100.3184"
+         style="stroke-width:0.26458332"
+         id="tspan67">}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="258.71692"
+       y="51.112034"
+       id="text71"><tspan
+         sodipodi:role="line"
+         id="tspan69"
+         x="258.71692"
+         y="51.112034"
+         style="stroke-width:0.26458332">STATE</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="268.77124"
+       y="314.8056"
+       id="text83"><tspan
+         sodipodi:role="line"
+         id="tspan81"
+         x="268.77124"
+         y="314.8056"
+         style="stroke-width:0.26458332">TRANSACTIONS</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="6.1865387"
+       y="177.26651"
+       id="text87"><tspan
+         sodipodi:role="line"
+         id="tspan85"
+         x="6.1865387"
+         y="177.26651"
+         style="stroke-width:0.26458332">TRANSACTIONS / EVENTS</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="260.85504"
+       y="147.06178"
+       id="text91"><tspan
+         sodipodi:role="line"
+         id="tspan89"
+         x="260.85504"
+         y="147.06178"
+         style="stroke-width:0.26458332">DERIVED STATE</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="22.489981"
+       y="192.76814"
+       id="text95"><tspan
+         sodipodi:role="line"
+         id="tspan93"
+         x="22.489981"
+         y="192.76814"
+         style="stroke-width:0.26458332">playAtLocation()</tspan></text>
+    <text
+       id="text99"
+       y="208.0025"
+       x="23.559057"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         y="208.0025"
+         x="23.559057"
+         id="tspan97"
+         sodipodi:role="line">reset()</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="272.8822"
+       y="162.83069"
+       id="text103"><tspan
+         sodipodi:role="line"
+         id="tspan101"
+         x="272.8822"
+         y="162.83069"
+         style="stroke-width:0.26458332">figureOutWinner(state)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="273.88641"
+       y="178.2596"
+       id="text107"><tspan
+         sodipodi:role="line"
+         id="tspan105"
+         x="273.88641"
+         y="178.2596"
+         style="stroke-width:0.26458332">nextPlayer(state)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="364.55566"
+       y="160.95981"
+       id="text111"><tspan
+         sodipodi:role="line"
+         id="tspan109"
+         x="364.55566"
+         y="170.32358"
+         style="stroke-width:0.26458332" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="38.379749"
+       y="403.80591"
+       id="text117"><tspan
+         sodipodi:role="line"
+         id="tspan115"
+         x="38.379749"
+         y="403.80591"
+         style="stroke-width:0.26458332">COMPONENTS</tspan></text>
+    <path
+       style="fill:#ff0000;stroke:#ff2a2a;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 234.90494,294.18066 -10.03712,-18.78826 21.13661,3.25481 z"
+       id="path123"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path125"
+       d="m 255.82262,362.82969 12.60784,-17.16929 6.19649,20.46836 z"
+       style="fill:#ff0000;stroke:#ff2a2a;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <text
+       id="text129"
+       y="395.6925"
+       x="261.2117"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         y="395.6925"
+         x="261.2117"
+         id="tspan127"
+         sodipodi:role="line">DOM EVENTS</tspan></text>
+    <path
+       style="fill:#ff0000;stroke:#ff2a2a;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 223.07399,413.7196 20.44079,-5.99302 -7.49845,20.02807 z"
+       id="path131"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path133"
+       d="m 155.00718,281.30634 -20.62463,5.3261 8.14485,-19.77401 z"
+       style="fill:#ff0000;stroke:#ff2a2a;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       style="fill:#ff0000;stroke:#ff2a2a;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 119.18838,341.21612 -11.98765,17.60793 -6.92236,-20.2344 z"
+       id="path135"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path137"
+       d="m 146.01577,407.74738 14.29162,15.79534 -21.29526,1.96517 z"
+       style="fill:#ff0000;stroke:#ff2a2a;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="118.30655"
+       y="315.33182"
+       id="text143"><tspan
+         sodipodi:role="line"
+         id="tspan141"
+         x="118.30655"
+         y="315.33182"
+         style="stroke-width:0.26458332">f()</tspan></text>
+    <text
+       id="text147"
+       y="393.19492"
+       x="121.14137"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         y="393.19492"
+         x="121.14137"
+         id="tspan145"
+         sodipodi:role="line">f()</tspan></text>
+    <text
+       id="text151"
+       y="390.92706"
+       x="241.3378"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332"
+         y="390.92706"
+         x="241.3378"
+         id="tspan149"
+         sodipodi:role="line">f()</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="247.5744"
+       y="318.92261"
+       id="text155"><tspan
+         sodipodi:role="line"
+         id="tspan153"
+         x="247.5744"
+         y="318.92261"
+         style="stroke-width:0.26458332">f()</tspan></text>
+  </g>
+</svg>
