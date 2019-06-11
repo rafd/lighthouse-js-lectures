@@ -1,16 +1,12 @@
-createdb w6d2
+To run:
+
+```
 bundle install
 
 ruby db/schema.rb
-ruby db/seed.rb
+
 ruby app.rb
+```
 
-> Country.all
-> Country.first.name
-> Country.first.cities
-> Country.first.cities.first.name
-> Country.first.capital
-> canada = Country.find_by_name("Canada")
-> calgary = City.create({name: "Calgary"})
-> canada.cities << calgary
 
+Take a look at all the files in this folder.
