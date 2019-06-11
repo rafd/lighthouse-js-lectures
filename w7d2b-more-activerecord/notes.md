@@ -17,7 +17,7 @@
       belongs_to :school
 
     School
-      has_many :students 
+      has_many :students
     ```
 
     here, ActiveRecord assumes the "students" table will have a column called "school_id"
@@ -26,10 +26,10 @@
   ### many-to-many
 
   User
-    has_and_belongs_to_many :foos
+    has_and_belongs_to_many :songs
 
   Song
-    has_and_belongs_to_many :foos
+    has_and_belongs_to_many :users
 
 
    here, ActiveRecord assumes there is a "users_songs" table with columns: "user_id" "songs_id"
@@ -38,7 +38,7 @@
 
    ### through 
 
-    User *- Rating -* Song
+    User -* Rating *- Song
 
     could use HABTM with a songs_users table
       but, not if we wanted to store the value of the rating (ex. 5)
@@ -82,18 +82,18 @@
     - @object.errors method
 
 
-  ```
-  validates :name,
-    presence: true,
-    length: { minimum: 1,
-              maximum: 10,
-              in: 1..10 },
-    numericality: { only_integer: true,
-                    greater_than: 5,
-                    less_than_or_equal_to: 8 },
-    format: { with: /iamregex/, message: 'not valid format' },
-    uniqueness: true
-  ```
+  class User
+    validates :name,
+      presence: true,
+      length: { minimum: 1,
+                maximum: 10,
+                in: 1..10 },
+      numericality: { only_integer: true,
+                      greater_than: 5,
+                      less_than_or_equal_to: 8 },
+      format: { with: /iamregex/, message: 'not valid format' },
+      uniqueness: true
+  end
 
 
 
@@ -101,6 +101,7 @@
 
   ```
   class Student < ActiveRecord::Base
+   
     validate :age_is_even
 
     private
@@ -112,9 +113,6 @@
     end
   end
   ```
-
-
-
 
   # will run validation only if object.bar is truthy:
   validates :foo, presence: true, if: :some_attr
@@ -154,12 +152,12 @@
 
   class User < ActiveRecord::Base
 
-     before_save :convert_phone
+     before_validation :convert_phone
 
      private
 
      def convert_phone
-       self.phone = self.phone.gsub(" ","-")
+       phone = phone.gsub(" ","-")
      end
 
    end
