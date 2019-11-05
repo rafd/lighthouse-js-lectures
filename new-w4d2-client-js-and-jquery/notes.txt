@@ -1,0 +1,42 @@
+client side js
+
+  DOM
+
+  how include js:
+    <script> tag (in <head>, or at end of <body>)
+    no 'require' of other files, must manually manage dependencies
+
+
+jquery
+  why? (had a reading)
+     b/c it's very common: https://libscore.com
+     historically: cross browser syntax, nicer syntax than default
+
+  use jquery for:
+   - DOM traversal and manipulation
+   - event handling
+   - ajax
+   - animation
+
+  jquery docs quite good
+    https://api.jquery.com
+
+  $ function
+    - $() is shortcut for jQuery()
+    - can do many things with $():
+      1. search for DOM elements
+          $("a") $("#id") $(".class")
+      2. create DOM elements
+          $("<a>")
+          warning: injection (see escape() in demo v2)
+      3. delay some code until page is ready
+            $(function() { ... });
+            equiv to: $(document).on("ready", function() { ... });
+      4. turn DOM element in jQuery object $(document), $(this)
+
+
+DEMO
+  creating "tabbed page" interface
+  v1 -> content in HTML, show/hide w/ jquery
+  v2 -> content in JS data structure, UI created and manipulated w/ jQuery
+
