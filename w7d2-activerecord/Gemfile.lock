@@ -24,7 +24,7 @@ GEM
       method_source (~> 0.9.0)
     sqlite3 (1.4.1)
     thread_safe (0.3.6)
-    tzinfo (1.2.5)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
 
 PLATFORMS
